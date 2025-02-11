@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>FMA-Net - Paper Page</title>
+    <title>GOAL: Global-local Object Alignment Learning project page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -67,6 +67,20 @@
             width: 23%;
             max-width: 250px;
         }
+        .abstract-section {
+            margin: 40px auto;
+            max-width: 1000px;
+            text-align: left;
+        }
+        .abstract-content {
+            line-height: 1.8;
+            color: #444;
+            text-align: justify;
+            padding: 0 20px;
+        }
+        .abstract-content p {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -107,5 +121,17 @@
             <img src="images/image4.PNG" alt="Example 4">
         </div>
     </div>
+
+    <div class="abstract-section">
+        <h2 class="demo-title">Abstract</h2>
+        <div class="abstract-content">
+            <p>We present a joint learning scheme of video super-resolution and deblurring, called VSRDB, to restore clean high-resolution (HR) videos from blurry low-resolution (LR) ones. This joint restoration problem has drawn much less attention compared to single restoration problems.</p>
+
+            <p>We propose a novel flow-guided dynamic filtering (FGDF) and iterative feature refinement with multi-attention (FRMA), which constitutes our VSRDB framework, denoted as FMA-Net. Specifically, our proposed FGDF enables precise estimation of both spatio-temporally-variant degradation and restoration kernels that are aware of motion trajectories through sophisticated motion representation learning. Compared to conventional dynamic filtering, the FGDF enables the FMA-Net to effectively handle large motions into the VSRDB.</p>
+
+            <p>Additionally, the stacked FRMA blocks trained with our novel temporal anchor (TA) loss, which temporally anchors and sharpens features, refine features in a course-to-fine manner through iterative updates. Extensive experiments demonstrate the superiority of the proposed FMA-Net over state-of-the-art methods in terms of both quantitative and qualitative quality.</p>
+        </div>
+    </div>
+    
 </body>
 </html>
