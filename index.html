@@ -121,6 +121,39 @@
             margin: 8px 0;
             max-width: 1000px;  /* 이미지와 동일한 최대 너비 */
         }
+        .demo-gallery {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .main-image-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .main-demo-image {
+            width: 100%;
+            height: auto;
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .thumbnail {
+            width: 180px;
+            height: 120px;
+            object-fit: cover;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -150,17 +183,35 @@
         <a href="https://drive.google.com/file/d/1E-g68yzf9-BBYe-C1zOxTrai7oFL7ifx/view?usp=sharing" class="button">🎥 Video</a>
     </div>
 
-    <div class="demo-section">
+    <div class="section">
+        <h2 class="section-title">Demo</h2>
+        <div class="demo-gallery">
+            <!-- 메인 이미지 -->
+            <div class="main-image-container">
+                <img id="mainImage" src="images/demo1.png" alt="Main Demo" class="main-demo-image">
+            </div>
+            <!-- 썸네일 이미지들 -->
+            <div class="thumbnail-container">
+                <img src="images/demo1.png" alt="Demo 1" class="thumbnail active" onclick="changeImage(0)">
+                <img src="images/demo2.png" alt="Demo 2" class="thumbnail" onclick="changeImage(1)">
+                <img src="images/demo3.png" alt="Demo 3" class="thumbnail" onclick="changeImage(2)">
+                <img src="images/demo4.png" alt="Demo 4" class="thumbnail" onclick="changeImage(3)">
+                <img src="images/demo5.png" alt="Demo 5" class="thumbnail" onclick="changeImage(4)">
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="demo-section">
         <h2 class="demo-title">Demo</h2>
         <img src="images/demo.PNG" alt="Demo" class="demo-image">
         
-        <!-- <div class="small-images">
+        <div class="small-images">
             <img src="images/image1.PNG" alt="Example 1">
             <img src="images/image2.PNG" alt="Example 2">
             <img src="images/image3.PNG" alt="Example 3">
             <img src="images/image4.PNG" alt="Example 4">
-        </div> -->
-    </div>
+        </div>
+    </div> -->
 
     <div class="abstract-section">
         <h2 class="demo-title">Abstract</h2>
@@ -216,5 +267,29 @@
         </div>
     </div>
 
+    <script>
+        const images = [
+            "images/demo1.png",
+            "images/demo2.png",
+            "images/demo3.png",
+            "images/demo4.png",
+            "images/demo5.png"
+        ];
+        
+        function changeImage(index) {
+            // 메인 이미지 변경
+            document.getElementById('mainImage').src = images[index];
+            
+            // 썸네일 활성화 상태 변경
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            thumbnails.forEach((thumb, i) => {
+                if (i === index) {
+                    thumb.classList.add('active');
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
