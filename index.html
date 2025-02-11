@@ -96,6 +96,7 @@
 
         .figure-wrapper {
             margin: 20px auto;
+            max-width: 1000px; /* 이미지 최대 너비와 동일하게 설정 */
         }
 
         .full-width-image {
@@ -103,23 +104,22 @@
             max-width: 1000px;
             display: block;
             margin: 0 auto;
-            border-radius: 5px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            /* border-radius와 box-shadow 제거 */
         }
 
         .figure-caption {
             margin-top: 15px;
-            text-align: center;
+            text-align: left;  /* 왼쪽 정렬로 변경 */
             color: #555;
             font-size: 0.95em;
             line-height: 1.6;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            padding: 0;  /* 패딩 제거 */
+            width: 100%;  /* 이미지와 동일한 너비 */
         }
 
         .figure-caption p {
             margin: 8px 0;
+            max-width: 1000px;  /* 이미지와 동일한 최대 너비 */
         }
     </style>
 </head>
