@@ -81,6 +81,46 @@
         .abstract-content p {
             margin-bottom: 20px;
         }
+        .section {
+            margin: 60px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .figure-wrapper {
+            margin: 20px auto;
+        }
+
+        .full-width-image {
+            width: 100%;
+            max-width: 1000px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .figure-caption {
+            margin-top: 15px;
+            text-align: center;
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .figure-caption p {
+            margin: 8px 0;
+        }
     </style>
 </head>
 <body>
@@ -90,8 +130,8 @@
 
     <div class="authors">
         <span><a href="https://drive.google.com/file/d/1E-g68yzf9-BBYe-C1zOxTrai7oFL7ifx/view?usp=sharing">Hyungyu Choi</a><sup>1</sup></span> &nbsp;&nbsp;
-        <span><a href="https://drive.google.com/file/d/1E-g68yzf9-BBYe-C1zOxTrai7oFL7ifx/view?usp=sharing">Youngkyun Jang</a><sup>2</sup></span> &nbsp;&nbsp;
-        <span><a href="https://drive.google.com/file/d/1E-g68yzf9-BBYe-C1zOxTrai7oFL7ifx/view?usp=sharing">Chanho Eom</a><sup>1</sup></span>
+        <span><a href="https://youngkyunjang.github.io/">Youngkyun Jang</a><sup>2</sup></span> &nbsp;&nbsp;
+        <span><a href="https://pailab.cau.ac.kr/members/faculty">Chanho Eom</a><sup>1</sup></span>
     </div>
 
     <div class="affiliations">
@@ -114,24 +154,44 @@
         <h2 class="demo-title">Demo</h2>
         <img src="images/demo.PNG" alt="Demo" class="demo-image">
         
-        <div class="small-images">
+        <!-- <div class="small-images">
             <img src="images/image1.PNG" alt="Example 1">
             <img src="images/image2.PNG" alt="Example 2">
             <img src="images/image3.PNG" alt="Example 3">
             <img src="images/image4.PNG" alt="Example 4">
-        </div>
+        </div> -->
     </div>
 
     <div class="abstract-section">
         <h2 class="demo-title">Abstract</h2>
         <div class="abstract-content">
-            <p>We present a joint learning scheme of video super-resolution and deblurring, called VSRDB, to restore clean high-resolution (HR) videos from blurry low-resolution (LR) ones. This joint restoration problem has drawn much less attention compared to single restoration problems.</p>
+            <p>Vision-language models like CLIP have shown impressive capabilities in aligning images and text, but they often struggle with lengthy, detailed text descriptions due to their training focus on concise captions. We present GOAL (Global-local Object Alignment Learning), a novel fine-tuning method that enhances CLIP's ability to handle lengthy text by leveraging both global and local semantic alignments.</p>
 
-            <p>We propose a novel flow-guided dynamic filtering (FGDF) and iterative feature refinement with multi-attention (FRMA), which constitutes our VSRDB framework, denoted as FMA-Net. Specifically, our proposed FGDF enables precise estimation of both spatio-temporally-variant degradation and restoration kernels that are aware of motion trajectories through sophisticated motion representation learning. Compared to conventional dynamic filtering, the FGDF enables the FMA-Net to effectively handle large motions into the VSRDB.</p>
+            <p>Our approach consists of two key components: Local Image-Sentence Matching (LISM), which identifies corresponding pairs between image segments and descriptive sentences, and Token Similarity-based Learning (TSL), which efficiently propagates local element attention through these matched pairs.</p>
 
-            <p>Additionally, the stacked FRMA blocks trained with our novel temporal anchor (TA) loss, which temporally anchors and sharpens features, refine features in a course-to-fine manner through iterative updates. Extensive experiments demonstrate the superiority of the proposed FMA-Net over state-of-the-art methods in terms of both quantitative and qualitative quality.</p>
+            <p>Evaluating GOAL on three new benchmarks for image-lengthy text retrieval, we demonstrate significant improvements over baseline CLIP fine-tuning, establishing a simple yet effective approach for adapting CLIP to detailed textual descriptions. Through extensive experiments, we show that our method's focus on local semantic alignment alongside global context leads to more nuanced and representative embeddings, particularly beneficial for tasks requiring fine-grained understanding of lengthy text descriptions.</p>
         </div>
     </div>
-    
+
+    <div class="section">
+        <h2 class="section-title">LISM Pipeline</h2>
+        <div class="figure-wrapper">
+            <img src="images/image2.PNG" alt="LISM Pipeline" class="full-width-image">
+            <div class="figure-caption">
+                <p>Overview of Local Image-Sentence Matching (LISM) pipeline. Given a global image and its detailed caption, LISM uses SAM to segment the image into local regions and splits the caption into individual sentences. These local pairs are then processed through CLIP encoders to obtain CLS embeddings, which are used for maximum similarity matching to identify the most relevant image-sentence pairs.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">GOAL Framework</h2>
+        <div class="figure-wrapper">
+            <img src="images/image3.PNG" alt="GOAL Framework" class="full-width-image">
+            <div class="figure-caption">
+                <p>The framework processes global image-text pairs and their local pairs through shared CLIP encoders, extracting patch and sequence tokens. TSL identifies and projects corresponding token regions to match local CLS embeddings, enabling attention on local element.</p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
