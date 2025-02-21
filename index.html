@@ -60,9 +60,16 @@
         
         /* 슬라이드쇼 스타일 */
         .slideshow-container {
-            max-width: 1000px;
+            max-width: 1000px; /* 전체 컨테이너 최대 너비 */
+            width: 90%; /* 화면 너비의 90%로 설정 */
+            height: 500px; /* 고정 높이 설정 - 필요에 따라 조정 */
             position: relative;
             margin: 0 auto;
+            background-color: #f5f5f5; /* 배경색 추가 - 선택사항 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* 컨테이너 밖으로 넘치는 콘텐츠 숨김 */
         }
         
         .slide {
@@ -71,8 +78,11 @@
         }
         
         .slide img {
-            width: 100%;
+            width: 100%; /* 컨테이너 너비에 맞게 조정 */
+            max-height: 600px; /* 최대 높이 설정 */
+            object-fit: contain; /* 비율 유지하면서 컨테이너에 맞춤 */
             display: block;
+            margin: 0 auto; /* 가운데 정렬 */
         }
         
         .slide.active {
@@ -211,55 +221,55 @@
             </div>
             
             <div class="slide fade">
-                <img src="demo/캡쳐.PNG" alt="Demo 2">
+                <img src="demo/캡처.PNG" alt="Demo 2">
             </div>
             
             <div class="slide fade">
-                <img src="demo/캡쳐1.PNG" alt="Demo 3">
+                <img src="demo/캡처1.PNG" alt="Demo 3">
             </div>
 
             <div class="slide fade">
-                <img src="demo/캡쳐2.PNG" alt="Demo 4">
+                <img src="demo/캡처2.PNG" alt="Demo 4">
             </div>
 
             <div class="slide fade">
-                <img src="demo/캡쳐3.PNG" alt="Demo 5">
+                <img src="demo/캡처3.PNG" alt="Demo 5">
             </div>
 
             <div class="slide fade">
-                <img src="demo/캡쳐4.PNG" alt="Demo 6">
+                <img src="demo/캡처4.PNG" alt="Demo 6">
             </div>
 
             <div class="slide fade">
-                <img src="demo/캡쳐5.PNG" alt="Demo 7">
+                <img src="demo/캡처5.PNG" alt="Demo 7">
             </div>
 
             <div class="slide fade">
-                <img src="demo/캡쳐6.PNG" alt="Demo 8">
+                <img src="demo/캡처6.PNG" alt="Demo 8">
             </div>
 
             <div class="slide fade">
-                <img src="demo/캡쳐7.PNG" alt="Demo 9">
+                <img src="demo/캡처7.PNG" alt="Demo 9">
             </div>
 
             <div class="slide fade">
-                <img src="demo/캡쳐8.PNG" alt="Demo 10">
+                <img src="demo/캡처8.PNG" alt="Demo 10">
             </div>
 
             <div class="slide fade">
-                <img src="demo/캡쳐9.PNG" alt="Demo 11">
+                <img src="demo/캡처9.PNG" alt="Demo 11">
             </div>
 
             <div class="slide fade">
-                <img src="demo/캡쳐10.PNG" alt="Demo 12">
+                <img src="demo/캡처10.PNG" alt="Demo 12">
             </div>
 
             <div class="slide fade">
-                <img src="demo/캡쳐11.PNG" alt="Demo 13">
+                <img src="demo/캡처11.PNG" alt="Demo 13">
             </div>
 
             <div class="slide fade">
-                <img src="demo/캡쳐12.PNG" alt="Demo 14">
+                <img src="demo/캡처12.PNG" alt="Demo 14">
             </div>
         </div>
         
