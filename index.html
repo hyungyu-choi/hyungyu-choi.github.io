@@ -62,7 +62,7 @@
         .slideshow-container {
             max-width: 1000px; /* 전체 컨테이너 최대 너비 */
             width: 90%; /* 화면 너비의 90%로 설정 */
-            height: 500px; /* 고정 높이 설정 - 필요에 따라 조정 */
+            height: 700px; /* 고정 높이 설정 - 필요에 따라 조정 */
             position: relative;
             margin: 0 auto;
             background-color: #f5f5f5; /* 배경색 추가 - 선택사항 */
@@ -354,7 +354,7 @@
         startSlideshow();
         
         function startSlideshow() {
-            slideTimeout = setTimeout(nextSlide, 3000); // 3초마다 이미지 변경
+            slideTimeout = setTimeout(nextSlide, 1500); // 3초마다 이미지 변경
         }
         
         function nextSlide() {
