@@ -51,11 +51,27 @@
             font-size: 24px;
             margin: 20px 0;
         }
-        .demo-image {
+        .demo-video {
             width: 100%;
             max-width: 1000px;
             margin: 20px auto;
             display: block;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-bottom: 56.25%; /* 16:9 비율 */
+            height: 0;
+            overflow: hidden;
+        }
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
         .small-images {
             display: flex;
@@ -121,40 +137,6 @@
             margin: 8px 0;
             max-width: 1000px;  /* 이미지와 동일한 최대 너비 */
         }
-        .demo-gallery {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .main-image-container {
-            width: 100%;
-            margin-bottom: 20px;
-        }
-        
-        .main-demo-image {
-            width: 100%;
-            height: auto;
-        }
-        
-        .thumbnail-container {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-        
-        .thumbnail {
-            width: 180px;
-            height: 120px;
-            object-fit: contain;  /* cover에서 contain으로 변경 */
-            cursor: pointer;
-            opacity: 0.7;
-            transition: opacity 0.3s;
-            background-color: #f5f5f5;  /* 이미지 주변 배경색 추가 */
-        }
-        
-        .thumbnail:hover, .thumbnail.active {
-            opacity: 1;
-        }
     </style>
 </head>
 <body>
@@ -186,33 +168,14 @@
 
     <div class="section">
         <h2 class="section-title">Demo</h2>
-        <div class="demo-gallery">
-            <!-- 메인 이미지 -->
-            <div class="main-image-container">
-                <img id="mainImage" src="images/demo1.PNG" alt="Main Demo" class="main-demo-image">
-            </div>
-            <!-- 썸네일 이미지들 -->
-            <div class="thumbnail-container">
-                <img src="images/demo1.PNG" alt="Demo 1" class="thumbnail active" onclick="changeImage(0)">
-                <img src="images/demo2.PNG" alt="Demo 2" class="thumbnail" onclick="changeImage(1)">
-                <img src="images/demo3.PNG" alt="Demo 3" class="thumbnail" onclick="changeImage(2)">
-                <img src="images/demo4.PNG" alt="Demo 4" class="thumbnail" onclick="changeImage(3)">
-                <img src="images/demo5.PNG" alt="Demo 5" class="thumbnail" onclick="changeImage(4)">
-            </div>
+        <div class="video-container">
+            <!-- For demo purposes showing a placeholder. In actual implementation, replace with your video -->
+            <video controls poster="/api/placeholder/1000/562" width="1000">
+                <source src="videos/goal_demo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
     </div>
-
-    <!-- <div class="demo-section">
-        <h2 class="demo-title">Demo</h2>
-        <img src="images/demo.PNG" alt="Demo" class="demo-image">
-        
-        <div class="small-images">
-            <img src="images/image1.PNG" alt="Example 1">
-            <img src="images/image2.PNG" alt="Example 2">
-            <img src="images/image3.PNG" alt="Example 3">
-            <img src="images/image4.PNG" alt="Example 4">
-        </div>
-    </div> -->
 
     <div class="abstract-section">
         <h2 class="demo-title">Abstract</h2>
@@ -267,30 +230,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        const images = [
-            "images/demo1.PNG",
-            "images/demo2.PNG",
-            "images/demo3.PNG",
-            "images/demo4.PNG",
-            "images/demo5.PNG"
-        ];
-        
-        function changeImage(index) {
-            // 메인 이미지 변경
-            document.getElementById('mainImage').src = images[index];
-            
-            // 썸네일 활성화 상태 변경
-            const thumbnails = document.querySelectorAll('.thumbnail');
-            thumbnails.forEach((thumb, i) => {
-                if (i === index) {
-                    thumb.classList.add('active');
-                } else {
-                    thumb.classList.remove('active');
-                }
-            });
-        }
-    </script>
 </body>
 </html>
