@@ -225,9 +225,11 @@
             
             .query-images {
                 display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* 150px에서 120px로 줄임 */
                 gap: 15px;
                 margin-bottom: 30px;
+                max-width: 900px; /* 전체 그리드의 최대 너비 제한 */
+                margin: 0 auto 30px auto; /* 중앙 정렬 */
             }
             
             .query-image {
@@ -235,8 +237,9 @@
                 border: 2px solid transparent;
                 border-radius: 8px;
                 transition: all 0.3s ease;
-                aspect-ratio: 1;
-                object-fit: cover;
+                width: 120px; /* 너비 고정 */
+                height: 120px; /* 높이 고정 */
+                object-fit: cover; /* 이미지 비율 유지하면서 영역에 맞춤 */
             }
             
             .query-image:hover {
