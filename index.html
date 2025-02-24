@@ -244,19 +244,17 @@
         }
         
         .models-container {
-            display: none; /* Initially hidden */
+            display: none;
             justify-content: space-around;
             margin-top: 50px;
             align-items: flex-start;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: opacity 0.5s ease;
         }
         
         .models-container.show {
             display: flex;
             opacity: 1;
-            transform: translateY(0);
         }
         
         .model-section {
@@ -269,13 +267,25 @@
         
         .model-encoder-container {
             opacity: 0;
-            transform: scale(0.8);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: opacity 0.5s ease;
         }
         
         .model-encoder-container.show {
             opacity: 1;
-            transform: scale(1);
+        }
+
+        /* GOAL 모델 이미지 크기 설정 */
+        .model-section:first-child .model-encoder {
+            width: 600px;
+            height: auto;
+            margin: 20px 0;
+        }
+
+        /* CLIP 모델 이미지 크기 설정 */
+        .model-section:last-child .model-encoder {
+            width: 350px;
+            height: auto;
+            margin: 20px 0;
         }
         
         .result-container {
@@ -290,7 +300,68 @@
             margin-top: 100px;
         }
         
-        /* Keep other existing styles... */
+        .result-container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .result-image-container {
+            width: 100%;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .model-encoder.processing {
+            animation: glow 1.5s infinite alternate;
+        }
+        
+        .flying-image {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 1000;
+            transition: all 0.8s ease-in-out;
+        }
+        
+        .processing-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #2962ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            opacity: 0;
+        }
+        
+        .processing .processing-indicator {
+            opacity: 1;
+        }
+        
+        .result-label {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        @keyframes glow {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.3); }
+        }
+        
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
     </style>
 
     <div class="demo-container">
