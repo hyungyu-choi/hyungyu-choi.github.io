@@ -247,11 +247,36 @@
             display: flex;
             justify-content: space-around;
             margin-top: 50px;
+            align-items: flex-start; /* 상단 정렬로 변경 */
         }
         
         .model-section {
             text-align: center;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* 높이 설정 추가 */
+        }
+        
+        .result-container {
+            max-width: 400px;
+            margin: 20px auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-top: 100px; /* 결과 컨테이너의 상단 여백 추가 */
+        }
+        
+        .result-image-container {
+            width: 100%;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* 상단 정렬 */
         }
         
         .model-encoder {
