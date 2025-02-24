@@ -221,127 +221,134 @@
                 max-width: 1200px;
                 margin: 0 auto;
                 padding: 20px;
+                position: relative;
             }
             
             .query-images {
                 display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* 150px에서 120px로 줄임 */
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
                 gap: 15px;
                 margin-bottom: 30px;
-                max-width: 900px; /* 전체 그리드의 최대 너비 제한 */
-                margin: 0 auto 30px auto; /* 중앙 정렬 */
+                max-width: 800px;
+                margin: 0 auto;
             }
             
             .query-image {
+                width: 100px;
+                height: 100px;
                 cursor: pointer;
                 border: 2px solid transparent;
                 border-radius: 8px;
                 transition: all 0.3s ease;
-                width: 120px; /* 너비 고정 */
-                height: 120px; /* 높이 고정 */
-                object-fit: cover; /* 이미지 비율 유지하면서 영역에 맞춤 */
+                object-fit: cover;
             }
             
-            .query-image:hover {
-                transform: scale(1.05);
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            }
-            
-            .query-image.selected {
-                border-color: #2962ff;
-            }
-            
-            .results-container {
+            .models-container {
                 display: flex;
-                gap: 30px;
-                margin-top: 30px;
+                justify-content: space-around;
+                margin-top: 50px;
             }
             
-            .model-results {
-                flex: 1;
-                padding: 20px;
-                border-radius: 12px;
-                background: #f8f9fa;
-                transition: all 0.5s ease;
+            .model-section {
+                text-align: center;
+                position: relative;
             }
             
-            .model-header {
-                display: flex;
-                align-items: center;
-                margin-bottom: 20px;
+            .model-encoder {
+                width: 300px;
+                height: auto;
+                margin: 20px 0;
+                position: relative;
             }
             
-            .model-icon {
-                width: 40px;
-                height: 40px;
-                margin-right: 15px;
+            .model-encoder.processing {
+                animation: glow 1.5s infinite alternate;
             }
             
-            .model-name {
-                font-size: 1.5em;
-                font-weight: bold;
+            .flying-image {
+                position: fixed;
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+                border-radius: 8px;
+                pointer-events: none;
+                z-index: 1000;
+                transition: all 0.8s ease-in-out;
             }
             
-            .retrieval-result {
+            .result-container {
+                max-width: 400px;
+                margin: 20px auto;
                 opacity: 0;
                 transform: translateY(20px);
                 transition: all 0.5s ease;
             }
             
-            .retrieval-result.show {
+            .result-container.show {
                 opacity: 1;
                 transform: translateY(0);
             }
             
-            .empty-state {
-                text-align: center;
-                padding: 40px;
-                color: #666;
-            }
-            
-            @keyframes fadeIn {
+            @keyframes glow {
                 from {
-                    opacity: 0;
-                    transform: translateY(20px);
+                    filter: brightness(1);
                 }
                 to {
-                    opacity: 1;
-                    transform: translateY(0);
+                    filter: brightness(1.3);
                 }
+            }
+            
+            /* 처리중 표시 애니메이션 */
+            .processing-indicator {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 60px;
+                height: 60px;
+                border: 3px solid #f3f3f3;
+                border-top: 3px solid #2962ff;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+                opacity: 0;
+            }
+            
+            .processing .processing-indicator {
+                opacity: 1;
+            }
+            
+            @keyframes spin {
+                0% { transform: translate(-50%, -50%) rotate(0deg); }
+                100% { transform: translate(-50%, -50%) rotate(360deg); }
             }
         </style>
     
         <div class="demo-container">
-            <h3 style="text-align: center; margin-bottom: 20px;">Select a query image below:</h3>
+            <h3 style="text-align: center; margin-bottom: 20px;">Select a query image:</h3>
             
             <div class="query-images">
-                <img src="demo/query1.jpg" class="query-image" onclick="selectImage(this, 'query1')" alt="Query 1">
-                <img src="demo/query2.jpg" class="query-image" onclick="selectImage(this, 'query2')" alt="Query 2">
-                <img src="demo/query3.jpg" class="query-image" onclick="selectImage(this, 'query3')" alt="Query 3">
-                <img src="demo/query4.jpg" class="query-image" onclick="selectImage(this, 'query4')" alt="Query 4">
-                <img src="demo/query5.jpg" class="query-image" onclick="selectImage(this, 'query5')" alt="Query 5">
-                <img src="demo/query6.jpg" class="query-image" onclick="selectImage(this, 'query6')" alt="Query 6">
+                <!-- 쿼리 이미지들 -->
+                <img src="demo/query1.jpg" class="query-image" onclick="processImage(this, 'query1')" alt="Query 1">
+                <!-- 더 많은 쿼리 이미지들... -->
             </div>
     
-            <div class="results-container">
-                <div class="model-results">
-                    <div class="model-header">
-                        <img src="images/goal_icon.PNG" class="model-icon" alt="GOAL">
-                        <span class="model-name">GOAL Results</span>
+            <div class="models-container">
+                <div class="model-section">
+                    <h3>GOAL Model</h3>
+                    <div class="model-encoder-container">
+                        <img src="images/goal_icon.PNG" class="model-encoder" alt="GOAL Encoder">
+                        <div class="processing-indicator"></div>
                     </div>
-                    <div id="goal-results" class="retrieval-result">
-                        <div class="empty-state">Select an image to see GOAL's retrieval results</div>
-                    </div>
+                    <div id="goal-result" class="result-container"></div>
                 </div>
     
-                <div class="model-results">
-                    <div class="model-header">
-                        <img src="images/clip_icon.PNG" class="model-icon" alt="CLIP">
-                        <span class="model-name">CLIP Results</span>
+                <div class="model-section">
+                    <h3>CLIP Model</h3>
+                    <div class="model-encoder-container">
+                        <img src="images/clip_icon.PNG" class="model-encoder" alt="CLIP Encoder">
+                        <div class="processing-indicator"></div>
                     </div>
-                    <div id="clip-results" class="retrieval-result">
-                        <div class="empty-state">Select an image to see CLIP's retrieval results</div>
-                    </div>
+                    <div id="clip-result" class="result-container"></div>
                 </div>
             </div>
         </div>
@@ -351,41 +358,66 @@
                 'query1': {
                     goal: 'goal_result1.jpg',
                     clip: 'clip_result1.jpg'
-                },
-                'query2': {
-                    goal: 'goal_result2.jpg',
-                    clip: 'clip_result2.jpg'
-                },
-                // Add more query-result mappings as needed
+                }
+                // 더 많은 결과 매핑...
             };
     
-            function selectImage(element, queryId) {
-                // Remove previous selection
-                document.querySelectorAll('.query-image').forEach(img => {
-                    img.classList.remove('selected');
-                });
+            function processImage(imgElement, queryId) {
+                // 이미지 복제 및 날아가는 효과 생성
+                const rect = imgElement.getBoundingClientRect();
+                const flyingImg = imgElement.cloneNode(true);
+                flyingImg.className = 'flying-image';
+                flyingImg.style.top = rect.top + 'px';
+                flyingImg.style.left = rect.left + 'px';
+                document.body.appendChild(flyingImg);
+    
+                // GOAL 모델로 날아가는 애니메이션
+                const goalEncoder = document.querySelector('.model-section:first-child .model-encoder');
+                const goalRect = goalEncoder.getBoundingClientRect();
                 
-                // Add selection to clicked image
-                element.classList.add('selected');
-                
-                // Hide current results with animation
-                const goalResults = document.getElementById('goal-results');
-                const clipResults = document.getElementById('clip-results');
-                
-                goalResults.style.opacity = '0';
-                clipResults.style.opacity = '0';
-                
-                // Update results after fade out
                 setTimeout(() => {
-                    if (results[queryId]) {
-                        goalResults.innerHTML = `<img src="results/${results[queryId].goal}" style="width: 100%;">`;
-                        clipResults.innerHTML = `<img src="results/${results[queryId].clip}" style="width: 100%;">`;
-                    }
+                    flyingImg.style.top = goalRect.top + 'px';
+                    flyingImg.style.left = goalRect.left + 'px';
+                    flyingImg.style.opacity = '0';
                     
-                    // Show new results with animation
-                    goalResults.style.opacity = '1';
-                    clipResults.style.opacity = '1';
-                }, 500);
+                    // 모델 처리 효과
+                    goalEncoder.classList.add('processing');
+                    goalEncoder.parentElement.classList.add('processing');
+                    
+                    // 결과 표시
+                    setTimeout(() => {
+                        document.getElementById('goal-result').innerHTML = 
+                            `<img src="results/${results[queryId].goal}" style="width: 100%;">`;
+                        document.getElementById('goal-result').classList.add('show');
+                        goalEncoder.classList.remove('processing');
+                        goalEncoder.parentElement.classList.remove('processing');
+                        flyingImg.remove();
+                    }, 2000);
+                }, 100);
+    
+                // CLIP 모델 처리 (비슷한 방식으로...)
+                const clipImg = flyingImg.cloneNode(true);
+                document.body.appendChild(clipImg);
+                const clipEncoder = document.querySelector('.model-section:last-child .model-encoder');
+                const clipRect = clipEncoder.getBoundingClientRect();
+                
+                setTimeout(() => {
+                    clipImg.style.top = clipRect.top + 'px';
+                    clipImg.style.left = clipRect.left + 'px';
+                    clipImg.style.opacity = '0';
+                    
+                    clipEncoder.classList.add('processing');
+                    clipEncoder.parentElement.classList.add('processing');
+                    
+                    setTimeout(() => {
+                        document.getElementById('clip-result').innerHTML = 
+                            `<img src="results/${results[queryId].clip}" style="width: 100%;">`;
+                        document.getElementById('clip-result').classList.add('show');
+                        clipEncoder.classList.remove('processing');
+                        clipEncoder.parentElement.classList.remove('processing');
+                        clipImg.remove();
+                    }, 2000);
+                }, 100);
             }
         </script>
     </div>
