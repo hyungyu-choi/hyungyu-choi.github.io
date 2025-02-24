@@ -365,8 +365,8 @@
         <script>
             const results = {
                 'query1': {
-                    goal: 'images/goal_result1.PNG',
-                    clip: 'images/clip_result1.PNG'
+                    goal: "images/goal_result1.PNG",
+                    clip: "images/clip_result1.PNG"
                 }
                 // 더 많은 결과 매핑...
             };
@@ -396,7 +396,7 @@
                     // 결과 표시
                     setTimeout(() => {
                         document.getElementById('goal-result').innerHTML = 
-                            `<img src="results/${results[queryId].goal}" style="width: 100%;">`;
+                            `<img src="${results[queryId].goal}" style="width: 100%;">`;  // "results/" 제거
                         document.getElementById('goal-result').classList.add('show');
                         goalEncoder.classList.remove('processing');
                         goalEncoder.parentElement.classList.remove('processing');
@@ -420,7 +420,7 @@
                     
                     setTimeout(() => {
                         document.getElementById('clip-result').innerHTML = 
-                            `<img src="results/${results[queryId].clip}" style="width: 100%;">`;
+                            `<img src="${results[queryId].clip}" style="width: 100%;">`;  // "results/" 제거
                         document.getElementById('clip-result').classList.add('show');
                         clipEncoder.classList.remove('processing');
                         clipEncoder.parentElement.classList.remove('processing');
