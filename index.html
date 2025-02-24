@@ -214,81 +214,177 @@
     </div>
 
     <div class="section">
-        <h2 class="section-title">Demo</h2>
-        <div class="slideshow-container">
-            <div class="slide fade active">
-                <img src="demo/qual_dev_00000.jpg" alt="Demo 1">
-            </div>
-            
-            <div class="slide fade">
-                <img src="demo/캡처.PNG" alt="Demo 2">
-            </div>
-            
-            <div class="slide fade">
-                <img src="demo/캡처1.PNG" alt="Demo 3">
-            </div>
-
-            <div class="slide fade">
-                <img src="demo/캡처2.PNG" alt="Demo 4">
-            </div>
-
-            <div class="slide fade">
-                <img src="demo/캡처3.PNG" alt="Demo 5">
-            </div>
-
-            <div class="slide fade">
-                <img src="demo/캡처4.PNG" alt="Demo 6">
-            </div>
-
-            <div class="slide fade">
-                <img src="demo/캡처5.PNG" alt="Demo 7">
-            </div>
-
-            <div class="slide fade">
-                <img src="demo/캡처6.PNG" alt="Demo 8">
-            </div>
-
-            <div class="slide fade">
-                <img src="demo/캡처7.PNG" alt="Demo 9">
-            </div>
-
-            <div class="slide fade">
-                <img src="demo/캡처8.PNG" alt="Demo 10">
-            </div>
-
-            <div class="slide fade">
-                <img src="demo/캡처9.PNG" alt="Demo 11">
-            </div>
-
-            <div class="slide fade">
-                <img src="demo/캡처10.PNG" alt="Demo 12">
-            </div>
-
-            <div class="slide fade">
-                <img src="demo/캡처11.PNG" alt="Demo 13">
-            </div>
-
-            <div class="slide fade">
-                <img src="demo/캡처12.PNG" alt="Demo 14">
-            </div>
-        </div>
+        <h2 class="section-title">Interactive Demo: GOAL vs CLIP</h2>
         
-        <div class="slideshow-controls">
-            <span class="dot active" onclick="setSlide(0)"></span>
-            <span class="dot" onclick="setSlide(1)"></span>
-            <span class="dot" onclick="setSlide(2)"></span>
-            <span class="dot" onclick="setSlide(3)"></span>
-            <span class="dot" onclick="setSlide(4)"></span>
-            <span class="dot" onclick="setSlide(5)"></span>
-            <span class="dot" onclick="setSlide(6)"></span>
-            <span class="dot" onclick="setSlide(7)"></span>
-            <span class="dot" onclick="setSlide(8)"></span>
-            <span class="dot" onclick="setSlide(9)"></span>
-            <span class="dot" onclick="setSlide(10)"></span>
-            <span class="dot" onclick="setSlide(11)"></span>
-            <span class="dot" onclick="setSlide(12)"></span>
-            <span class="dot" onclick="setSlide(13)"></span>
+        <style>
+            .demo-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            
+            .query-images {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+                margin-bottom: 30px;
+            }
+            
+            .query-image {
+                cursor: pointer;
+                border: 2px solid transparent;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                aspect-ratio: 1;
+                object-fit: cover;
+            }
+            
+            .query-image:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+            
+            .query-image.selected {
+                border-color: #2962ff;
+            }
+            
+            .results-container {
+                display: flex;
+                gap: 30px;
+                margin-top: 30px;
+            }
+            
+            .model-results {
+                flex: 1;
+                padding: 20px;
+                border-radius: 12px;
+                background: #f8f9fa;
+                transition: all 0.5s ease;
+            }
+            
+            .model-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+            
+            .model-icon {
+                width: 40px;
+                height: 40px;
+                margin-right: 15px;
+            }
+            
+            .model-name {
+                font-size: 1.5em;
+                font-weight: bold;
+            }
+            
+            .retrieval-result {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.5s ease;
+            }
+            
+            .retrieval-result.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .empty-state {
+                text-align: center;
+                padding: 40px;
+                color: #666;
+            }
+            
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        </style>
+    
+        <div class="demo-container">
+            <h3 style="text-align: center; margin-bottom: 20px;">Select a query image below:</h3>
+            
+            <div class="query-images">
+                <img src="demo/query1.jpg" class="query-image" onclick="selectImage(this, 'query1')" alt="Query 1">
+                <img src="demo/query2.jpg" class="query-image" onclick="selectImage(this, 'query2')" alt="Query 2">
+                <img src="demo/query3.jpg" class="query-image" onclick="selectImage(this, 'query3')" alt="Query 3">
+                <img src="demo/query4.jpg" class="query-image" onclick="selectImage(this, 'query4')" alt="Query 4">
+                <img src="demo/query5.jpg" class="query-image" onclick="selectImage(this, 'query5')" alt="Query 5">
+                <img src="demo/query6.jpg" class="query-image" onclick="selectImage(this, 'query6')" alt="Query 6">
+            </div>
+    
+            <div class="results-container">
+                <div class="model-results">
+                    <div class="model-header">
+                        <img src="images/goal_icon.PNG" class="model-icon" alt="GOAL">
+                        <span class="model-name">GOAL Results</span>
+                    </div>
+                    <div id="goal-results" class="retrieval-result">
+                        <div class="empty-state">Select an image to see GOAL's retrieval results</div>
+                    </div>
+                </div>
+    
+                <div class="model-results">
+                    <div class="model-header">
+                        <img src="images/clip_icon.PNG" class="model-icon" alt="CLIP">
+                        <span class="model-name">CLIP Results</span>
+                    </div>
+                    <div id="clip-results" class="retrieval-result">
+                        <div class="empty-state">Select an image to see CLIP's retrieval results</div>
+                    </div>
+                </div>
+            </div>
         </div>
+    
+        <script>
+            const results = {
+                'query1': {
+                    goal: 'goal_result1.jpg',
+                    clip: 'clip_result1.jpg'
+                },
+                'query2': {
+                    goal: 'goal_result2.jpg',
+                    clip: 'clip_result2.jpg'
+                },
+                // Add more query-result mappings as needed
+            };
+    
+            function selectImage(element, queryId) {
+                // Remove previous selection
+                document.querySelectorAll('.query-image').forEach(img => {
+                    img.classList.remove('selected');
+                });
+                
+                // Add selection to clicked image
+                element.classList.add('selected');
+                
+                // Hide current results with animation
+                const goalResults = document.getElementById('goal-results');
+                const clipResults = document.getElementById('clip-results');
+                
+                goalResults.style.opacity = '0';
+                clipResults.style.opacity = '0';
+                
+                // Update results after fade out
+                setTimeout(() => {
+                    if (results[queryId]) {
+                        goalResults.innerHTML = `<img src="results/${results[queryId].goal}" style="width: 100%;">`;
+                        clipResults.innerHTML = `<img src="results/${results[queryId].clip}" style="width: 100%;">`;
+                    }
+                    
+                    // Show new results with animation
+                    goalResults.style.opacity = '1';
+                    clipResults.style.opacity = '1';
+                }, 500);
+            }
+        </script>
     </div>
 
     <div class="abstract-section">
