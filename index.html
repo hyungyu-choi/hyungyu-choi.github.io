@@ -213,254 +213,252 @@
         <a href="https://drive.google.com/file/d/1E-g68yzf9-BBYe-C1zOxTrai7oFL7ifx/view?usp=sharing" class="button">🎥 Video</a>
     </div>
 
-    <div class="section">
-        <h2 class="section-title">Interactive Demo: GOAL vs CLIP</h2>
+<div class="section">
+    <h2 class="section-title">Interactive Demo: GOAL vs CLIP</h2>
+    
+    <style>
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
         
-        <style>
-            .demo-container {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 20px;
-                position: relative;
+        .query-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .query-image {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            object-fit: cover;
+        }
+        
+        .models-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+        
+        .model-section {
+            text-align: center;
+            position: relative;
+        }
+        
+        .model-encoder {
+            height: auto;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        /* GOAL 모델 이미지 크기 설정 */
+        .model-section:first-child .model-encoder {
+            width: 400px;
+        }
+
+        /* CLIP 모델 이미지 크기 설정 */
+        .model-section:last-child .model-encoder {
+            width: 300px;
+        }
+        
+        .model-encoder.processing {
+            animation: glow 1.5s infinite alternate;
+        }
+        
+        .flying-image {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 1000;
+            transition: all 0.8s ease-in-out;
+        }
+        
+        .result-container {
+            max-width: 400px;
+            margin: 20px auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            height: 100%;
+        }
+        
+        .result-container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 결과 레이블 스타일 */
+        .result-label {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* 결과 이미지 컨테이너 */
+        .result-image-container {
+            width: 100%;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        @keyframes glow {
+            from {
+                filter: brightness(1);
             }
-            
-            .query-images {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-                gap: 15px;
-                margin-bottom: 30px;
-                max-width: 800px;
-                margin: 0 auto;
+            to {
+                filter: brightness(1.3);
             }
-            
-            .query-image {
-                width: 100px;
-                height: 100px;
-                cursor: pointer;
-                border: 2px solid transparent;
-                border-radius: 8px;
-                transition: all 0.3s ease;
-                object-fit: cover;
-            }
-            
-            .models-container {
-                display: flex;
-                justify-content: space-around;
-                margin-top: 50px;
-            }
-            
-            .model-section {
-                text-align: center;
-                position: relative;
-            }
-            
-            .model-encoder {
-                height: auto;
-                margin: 20px 0;
-                position: relative;
-            }
-            
-            /* GOAL 모델 이미지 크기 설정 */
-            .model-section:first-child .model-encoder {
-                width: 600px;
-            }
-            
-            /* CLIP 모델 이미지 크기 설정 */
-            .model-section:last-child .model-encoder {
-                width: 300px;
-            }
-            
-            .model-encoder.processing {
-                animation: glow 1.5s infinite alternate;
-            }
-            
-            .flying-image {
-                position: fixed;
-                width: 100px;
-                height: 100px;
-                object-fit: cover;
-                border-radius: 8px;
-                pointer-events: none;
-                z-index: 1000;
-                transition: all 0.8s ease-in-out;
-            }
-            
-            .result-container {
-                max-width: 400px;
-                margin: 20px auto;
-                opacity: 0;
-                transform: translateY(20px);
-                transition: all 0.5s ease;
-                height: 100%; /* 컨테이너 높이 일관성 유지 */
-            }
-            
-            /* 결과 레이블 스타일 */
-            .result-label {
-                font-size: 1.2em;
-                font-weight: bold;
-                margin-bottom: 10px;
-                color: #333;
-            }
-            
-            /* 결과 이미지 컨테이너 */
-            .result-image-container {
-                width: 100%;
-                min-height: 200px; /* 최소 높이 설정하여 일관성 유지 */
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .result-container.show {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            
-            @keyframes glow {
-                from {
-                    filter: brightness(1);
-                }
-                to {
-                    filter: brightness(1.3);
-                }
-            }
-            
-            /* 처리중 표시 애니메이션 */
-            .processing-indicator {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 60px;
-                height: 60px;
-                border: 3px solid #f3f3f3;
-                border-top: 3px solid #2962ff;
-                border-radius: 50%;
-                animation: spin 1s linear infinite;
-                opacity: 0;
-            }
-            
-            .processing .processing-indicator {
-                opacity: 1;
-            }
-            
-            @keyframes spin {
-                0% { transform: translate(-50%, -50%) rotate(0deg); }
-                100% { transform: translate(-50%, -50%) rotate(360deg); }
-            }
-        </style>
-    
-        <div class="demo-container">
-            <h3 style="text-align: center; margin-bottom: 20px;">Select a query image:</h3>
-            
-            <div class="query-images">
-                <!-- 쿼리 이미지들 -->
-                <img src="demo/query1.jpg" class="query-image" onclick="processImage(this, 'query1')" alt="Query 1">
-                <!-- 더 많은 쿼리 이미지들... -->
+        }
+        
+        /* 처리중 표시 애니메이션 */
+        .processing-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #2962ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            opacity: 0;
+        }
+        
+        .processing .processing-indicator {
+            opacity: 1;
+        }
+        
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+    </style>
+
+    <div class="demo-container">
+        <h3 style="text-align: center; margin-bottom: 20px;">Select a query image:</h3>
+        
+        <div class="query-images">
+            <img src="demo/query1.jpg" class="query-image" onclick="processImage(this, 'query1')" alt="Query 1">
+            <!-- 더 많은 쿼리 이미지들... -->
+        </div>
+
+        <div class="models-container">
+            <div class="model-section">
+                <h3>GOAL Model</h3>
+                <div class="model-encoder-container">
+                    <img src="images/goal_icon.PNG" class="model-encoder" alt="GOAL Encoder">
+                    <div class="processing-indicator"></div>
+                </div>
+                <div id="goal-result" class="result-container">
+                    <div class="result-image-container"></div>
+                </div>
             </div>
-    
-            <div class="models-container">
-                <div class="model-section">
-                    <h3>GOAL Model</h3>
-                    <div class="model-encoder-container">
-                        <img src="images/goal_icon.PNG" class="model-encoder" alt="GOAL Encoder">
-                        <div class="processing-indicator"></div>
-                    </div>
-                    <div id="goal-result" class="result-container"></div>
+
+            <div class="model-section">
+                <h3>CLIP Model</h3>
+                <div class="model-encoder-container">
+                    <img src="images/clip_icon.PNG" class="model-encoder" alt="CLIP Encoder">
+                    <div class="processing-indicator"></div>
                 </div>
-    
-                <div class="model-section">
-                    <h3>GOAL Model</h3>
-                    <div class="model-encoder-container">
-                        <img src="images/goal_icon.PNG" class="model-encoder" alt="GOAL Encoder">
-                        <div class="processing-indicator"></div>
-                    </div>
-                    <div id="goal-result" class="result-container">
-                        <div class="result-image-container"></div>
-                    </div>
-                </div>
-                
-                <div class="model-section">
-                    <h3>CLIP Model</h3>
-                    <div class="model-encoder-container">
-                        <img src="images/clip_icon.PNG" class="model-encoder" alt="CLIP Encoder">
-                        <div class="processing-indicator"></div>
-                    </div>
-                    <div id="clip-result" class="result-container">
-                        <div class="result-image-container"></div>
-                    </div>
+                <div id="clip-result" class="result-container">
+                    <div class="result-image-container"></div>
                 </div>
             </div>
         </div>
-    
-        <script>
-            const results = {
-                'query1': {
-                    goal: "images/goal_result1.PNG",
-                    clip: "images/clip_result1.PNG"
-                }
-                // 더 많은 결과 매핑...
-            };
-    
-            function processImage(imgElement, queryId) {
-                // 이미지 복제 및 날아가는 효과 생성
-                const rect = imgElement.getBoundingClientRect();
-                const flyingImg = imgElement.cloneNode(true);
-                flyingImg.className = 'flying-image';
-                flyingImg.style.top = rect.top + 'px';
-                flyingImg.style.left = rect.left + 'px';
-                document.body.appendChild(flyingImg);
-    
-                // GOAL 모델로 날아가는 애니메이션
-                const goalEncoder = document.querySelector('.model-section:first-child .model-encoder');
-                const goalRect = goalEncoder.getBoundingClientRect();
-                
-                setTimeout(() => {
-                    flyingImg.style.top = goalRect.top + 'px';
-                    flyingImg.style.left = goalRect.left + 'px';
-                    flyingImg.style.opacity = '0';
-                    
-                    // 모델 처리 효과
-                    goalEncoder.classList.add('processing');
-                    goalEncoder.parentElement.classList.add('processing');
-                    
-                    // 결과 표시
-                    setTimeout(() => {
-                        document.getElementById('goal-result').innerHTML = 
-                            `<img src="${results[queryId].goal}" style="width: 100%;">`;  // "results/" 제거
-                        document.getElementById('goal-result').classList.add('show');
-                        goalEncoder.classList.remove('processing');
-                        goalEncoder.parentElement.classList.remove('processing');
-                        flyingImg.remove();
-                    }, 2000);
-                }, 100);
-    
-                // CLIP 모델 처리 (비슷한 방식으로...)
-                const clipImg = flyingImg.cloneNode(true);
-                document.body.appendChild(clipImg);
-                const clipEncoder = document.querySelector('.model-section:last-child .model-encoder');
-                const clipRect = clipEncoder.getBoundingClientRect();
-                
-                setTimeout(() => {
-                    clipImg.style.top = clipRect.top + 'px';
-                    clipImg.style.left = clipRect.left + 'px';
-                    clipImg.style.opacity = '0';
-                    
-                    clipEncoder.classList.add('processing');
-                    clipEncoder.parentElement.classList.add('processing');
-                    
-                    setTimeout(() => {
-                        document.getElementById('clip-result').innerHTML = 
-                            `<img src="${results[queryId].clip}" style="width: 100%;">`;  // "results/" 제거
-                        document.getElementById('clip-result').classList.add('show');
-                        clipEncoder.classList.remove('processing');
-                        clipEncoder.parentElement.classList.remove('processing');
-                        clipImg.remove();
-                    }, 2000);
-                }, 100);
-            }
-        </script>
     </div>
+
+    <script>
+        const results = {
+            'query1': {
+                goal: "images/goal_result1.PNG",
+                clip: "images/clip_result1.PNG"
+            }
+            // 더 많은 결과 매핑...
+        };
+
+        function processImage(imgElement, queryId) {
+            // 이미지 복제 및 날아가는 효과 생성
+            const rect = imgElement.getBoundingClientRect();
+            const flyingImg = imgElement.cloneNode(true);
+            flyingImg.className = 'flying-image';
+            flyingImg.style.top = rect.top + 'px';
+            flyingImg.style.left = rect.left + 'px';
+            document.body.appendChild(flyingImg);
+
+            // GOAL 모델로 날아가는 애니메이션
+            const goalEncoder = document.querySelector('.model-section:first-child .model-encoder');
+            const goalRect = goalEncoder.getBoundingClientRect();
+            
+            setTimeout(() => {
+                flyingImg.style.top = goalRect.top + 'px';
+                flyingImg.style.left = goalRect.left + 'px';
+                flyingImg.style.opacity = '0';
+                
+                // 모델 처리 효과
+                goalEncoder.classList.add('processing');
+                goalEncoder.parentElement.classList.add('processing');
+                
+                // 결과 표시
+                setTimeout(() => {
+                    document.getElementById('goal-result').innerHTML = `
+                        <div class="result-label">GOAL Retrieval Result</div>
+                        <div class="result-image-container">
+                            <img src="${results[queryId].goal}" style="width: 100%;">
+                        </div>
+                    `;
+                    document.getElementById('goal-result').classList.add('show');
+                    goalEncoder.classList.remove('processing');
+                    goalEncoder.parentElement.classList.remove('processing');
+                    flyingImg.remove();
+                }, 2000);
+            }, 100);
+
+            // CLIP 모델 처리
+            const clipImg = flyingImg.cloneNode(true);
+            document.body.appendChild(clipImg);
+            const clipEncoder = document.querySelector('.model-section:last-child .model-encoder');
+            const clipRect = clipEncoder.getBoundingClientRect();
+            
+            setTimeout(() => {
+                clipImg.style.top = clipRect.top + 'px';
+                clipImg.style.left = clipRect.left + 'px';
+                clipImg.style.opacity = '0';
+                
+                clipEncoder.classList.add('processing');
+                clipEncoder.parentElement.classList.add('processing');
+                
+                setTimeout(() => {
+                    document.getElementById('clip-result').innerHTML = `
+                        <div class="result-label">CLIP Retrieval Result</div>
+                        <div class="result-image-container">
+                            <img src="${results[queryId].clip}" style="width: 100%;">
+                        </div>
+                    `;
+                    document.getElementById('clip-result').classList.add('show');
+                    clipEncoder.classList.remove('processing');
+                    clipEncoder.parentElement.classList.remove('processing');
+                    clipImg.remove();
+                }, 2000);
+            }, 100);
+        }
+    </script>
+</div>
 
     <div class="abstract-section">
         <h2 class="demo-title">Abstract</h2>
