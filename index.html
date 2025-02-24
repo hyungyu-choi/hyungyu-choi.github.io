@@ -291,6 +291,24 @@
                 opacity: 0;
                 transform: translateY(20px);
                 transition: all 0.5s ease;
+                height: 100%; /* 컨테이너 높이 일관성 유지 */
+            }
+            
+            /* 결과 레이블 스타일 */
+            .result-label {
+                font-size: 1.2em;
+                font-weight: bold;
+                margin-bottom: 10px;
+                color: #333;
+            }
+            
+            /* 결과 이미지 컨테이너 */
+            .result-image-container {
+                width: 100%;
+                min-height: 200px; /* 최소 높이 설정하여 일관성 유지 */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
             
             .result-container.show {
@@ -352,12 +370,25 @@
                 </div>
     
                 <div class="model-section">
+                    <h3>GOAL Model</h3>
+                    <div class="model-encoder-container">
+                        <img src="images/goal_icon.PNG" class="model-encoder" alt="GOAL Encoder">
+                        <div class="processing-indicator"></div>
+                    </div>
+                    <div id="goal-result" class="result-container">
+                        <div class="result-image-container"></div>
+                    </div>
+                </div>
+                
+                <div class="model-section">
                     <h3>CLIP Model</h3>
                     <div class="model-encoder-container">
                         <img src="images/clip_icon.PNG" class="model-encoder" alt="CLIP Encoder">
                         <div class="processing-indicator"></div>
                     </div>
-                    <div id="clip-result" class="result-container"></div>
+                    <div id="clip-result" class="result-container">
+                        <div class="result-image-container"></div>
+                    </div>
                 </div>
             </div>
         </div>
