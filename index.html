@@ -243,22 +243,30 @@
                 object-fit: cover;
             }
             
+            /* models-container의 스타일을 수정하여 GOAL 모델에 더 많은 공간 할당 */
             .models-container {
                 display: flex;
                 justify-content: space-around;
                 margin-top: 50px;
+                gap: 30px; /* 모델 간 간격 추가 */
             }
-            
-            .model-section {
-                text-align: center;
-                position: relative;
+
+            /* GOAL 모델 섹션을 위한 새로운 스타일 */
+            .model-section.goal-section {
+                flex: 1.5; /* GOAL 섹션에 더 많은 공간 할당 */
             }
-            
-            .model-encoder {
-                width: 300px;
-                height: auto;
-                margin: 20px 0;
-                position: relative;
+
+            .model-section.clip-section {
+                flex: 1; /* CLIP 섹션은 기본 크기 유지 */
+            }
+
+            /* GOAL 모델의 인코더 이미지 크기 조정 */
+            .goal-section .model-encoder {
+                width: 400px; /* GOAL 모델 이미지 크기 증가 */
+            }
+
+            .clip-section .model-encoder {
+                width: 300px; /* CLIP 모델 이미지 크기 유지 */
             }
             
             .model-encoder.processing {
@@ -333,7 +341,7 @@
             </div>
     
             <div class="models-container">
-                <div class="model-section">
+                <div class="model-section goal-section">
                     <h3>GOAL Model</h3>
                     <div class="model-encoder-container">
                         <img src="images/goal_icon.PNG" class="model-encoder" alt="GOAL Encoder">
@@ -341,8 +349,8 @@
                     </div>
                     <div id="goal-result" class="result-container"></div>
                 </div>
-    
-                <div class="model-section">
+            
+                <div class="model-section clip-section">
                     <h3>CLIP Model</h3>
                     <div class="model-encoder-container">
                         <img src="images/clip_icon.PNG" class="model-encoder" alt="CLIP Encoder">
@@ -446,7 +454,7 @@
     <div class="section">
         <h2 class="section-title">GOAL Framework</h2>
         <div class="figure-wrapper">
-            <img src="images/image3.PNG" alt="GOAL Framework" class="full-width-image">
+            <img src="images/goal_icon.PNG" alt="GOAL Framework" class="full-width-image">
             <div class="figure-caption">
                 <p>The framework processes global image-text pairs and their local pairs through shared CLIP encoders, extracting patch and sequence tokens. TSL identifies and projects corresponding token regions to match local CLS embeddings, enabling attention on local element.</p>
             </div>
