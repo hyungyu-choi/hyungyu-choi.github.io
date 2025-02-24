@@ -194,13 +194,13 @@
     <div class="authors">
         <span><a href="https://drive.google.com/file/d/1uYybI4OALvTs6q57_iWY6d6Pw_7FhcKk/view?usp=sharing">Hyungyu Choi</a><sup>1,*</sup></span> &nbsp;&nbsp;
         <span><a href="https://youngkyunjang.github.io/">Young Kyun Jang</a><sup>2,*</sup></span> &nbsp;&nbsp;
-        <span><a href="https://pailab.cau.ac.kr/members/faculty">Chanho Eom</a><sup>1</sup></span>
+        <span><a href="https://pailab.cau.ac.kr/members/faculty">Chanho Eom</a><sup>1</sup></span><br>
+        <span style="font-size: 0.9em; color: #666;">*Equal contribution</span>
     </div>
     
     <div class="affiliations">
         <sup>1</sup>Chung-Ang University, South Korea<br>
-        <sup>2</sup>Meta AI, USA<br>
-        <sup>*</sup>Equal contribution
+        <sup>2</sup>Meta AI, USA
     </div>
 
     <div class="conference">
@@ -443,7 +443,7 @@
                 goal: "images/goal_result6.PNG",
                 clip: "images/clip_result6.PNG"
             },
-            'query6': {
+            'query7': {
                 goal: "images/goal_result7.PNG",
                 clip: "images/clip_result7.PNG"
             }
@@ -500,8 +500,8 @@
                     goalEncoder.classList.remove('processing');
                     goalEncoder.parentElement.classList.remove('processing');
                     flyingImg.remove();
-                }, 2000);
-            }, 100);
+                }, 4000);
+            }, 150);
 
             // CLIP model animation
             const clipImg = flyingImg.cloneNode(true);
@@ -528,8 +528,8 @@
                     clipEncoder.classList.remove('processing');
                     clipEncoder.parentElement.classList.remove('processing');
                     clipImg.remove();
-                }, 2000);
-            }, 100);
+                }, 4000);
+            }, 150);
         }
     </script>
 </div>
