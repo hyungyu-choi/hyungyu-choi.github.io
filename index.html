@@ -244,21 +244,39 @@
         }
         
         .models-container {
-            display: none; /* 초기에 숨김 */
+            display: flex;
             justify-content: space-around;
             margin-top: 50px;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        .models-container.show {
-            display: flex;
-            opacity: 1;
+            align-items: flex-start; /* 상단 정렬로 변경 */
         }
         
         .model-section {
             text-align: center;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* 높이 설정 추가 */
+        }
+        
+        .result-container {
+            max-width: 400px;
+            margin: 20px auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-top: 100px; /* 결과 컨테이너의 상단 여백 추가 */
+        }
+        
+        .result-image-container {
+            width: 100%;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* 상단 정렬 */
         }
         
         .model-encoder {
@@ -267,12 +285,14 @@
             position: relative;
         }
 
+        /* GOAL 모델 이미지 크기 설정 */
         .model-section:first-child .model-encoder {
-            width: 400px;
+            width: 600px;
         }
 
+        /* CLIP 모델 이미지 크기 설정 */
         .model-section:last-child .model-encoder {
-            width: 300px;
+            width: 350px;
         }
         
         .model-encoder.processing {
@@ -304,6 +324,7 @@
             transform: translateY(0);
         }
 
+        /* 결과 레이블 스타일 */
         .result-label {
             font-size: 1.2em;
             font-weight: bold;
@@ -311,6 +332,7 @@
             color: #333;
         }
 
+        /* 결과 이미지 컨테이너 */
         .result-image-container {
             width: 100%;
             min-height: 200px;
@@ -320,10 +342,15 @@
         }
         
         @keyframes glow {
-            from { filter: brightness(1); }
-            to { filter: brightness(1.3); }
+            from {
+                filter: brightness(1);
+            }
+            to {
+                filter: brightness(1.3);
+            }
         }
         
+        /* 처리중 표시 애니메이션 */
         .processing-indicator {
             position: absolute;
             top: 50%;
@@ -346,177 +373,23 @@
             0% { transform: translate(-50%, -50%) rotate(0deg); }
             100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
-
-        /* Abstract 섹션 트랜지션 추가 */
-        .abstract-section {
-            transition: transform 0.5s ease;
-            transform: translateY(0);
-        }
-        
-        .abstract-section.shift-down {
-            transform: translateY(200px);
-        }
     </style>
 
-    <div class="section">
-        <h2 class="section-title">Interactive Demo: GOAL vs CLIP</h2>
+    <div class="demo-container">
+        <h3 style="text-align: center; margin-bottom: 20px;">Select a query image:</h3>
         
-        <style>
-            .demo-container {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 20px;
-                position: relative;
-            }
-            
-            .query-images {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-                gap: 15px;
-                margin-bottom: 30px;
-                max-width: 800px;
-                margin: 0 auto;
-            }
-            
-            .query-image {
-                width: 100px;
-                height: 100px;
-                cursor: pointer;
-                border: 2px solid transparent;
-                border-radius: 8px;
-                transition: all 0.3s ease;
-                object-fit: cover;
-            }
-            
-            .models-container {
-                display: none; /* 초기에 숨김 */
-                justify-content: space-around;
-                margin-top: 50px;
-                opacity: 0;
-                transition: opacity 0.5s ease;
-            }
-            
-            .models-container.show {
-                display: flex;
-                opacity: 1;
-            }
-            
-            .model-section {
-                text-align: center;
-                position: relative;
-            }
-            
-            .model-encoder {
-                height: auto;
-                margin: 20px 0;
-                position: relative;
-            }
-    
-            .model-section:first-child .model-encoder {
-                width: 400px;
-            }
-    
-            .model-section:last-child .model-encoder {
-                width: 300px;
-            }
-            
-            .model-encoder.processing {
-                animation: glow 1.5s infinite alternate;
-            }
-            
-            .flying-image {
-                position: fixed;
-                width: 100px;
-                height: 100px;
-                object-fit: cover;
-                border-radius: 8px;
-                pointer-events: none;
-                z-index: 1000;
-                transition: all 0.8s ease-in-out;
-            }
-            
-            .result-container {
-                max-width: 400px;
-                margin: 20px auto;
-                opacity: 0;
-                transform: translateY(20px);
-                transition: all 0.5s ease;
-                height: 100%;
-            }
-            
-            .result-container.show {
-                opacity: 1;
-                transform: translateY(0);
-            }
-    
-            .result-label {
-                font-size: 1.2em;
-                font-weight: bold;
-                margin-bottom: 10px;
-                color: #333;
-            }
-    
-            .result-image-container {
-                width: 100%;
-                min-height: 200px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            @keyframes glow {
-                from { filter: brightness(1); }
-                to { filter: brightness(1.3); }
-            }
-            
-            .processing-indicator {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 60px;
-                height: 60px;
-                border: 3px solid #f3f3f3;
-                border-top: 3px solid #2962ff;
-                border-radius: 50%;
-                animation: spin 1s linear infinite;
-                opacity: 0;
-            }
-            
-            .processing .processing-indicator {
-                opacity: 1;
-            }
-            
-            @keyframes spin {
-                0% { transform: translate(-50%, -50%) rotate(0deg); }
-                100% { transform: translate(-50%, -50%) rotate(360deg); }
-            }
-    
-            /* Abstract 섹션 트랜지션 추가 */
-            .abstract-section {
-                transition: transform 0.5s ease;
-                transform: translateY(0);
-            }
-            
-            .abstract-section.shift-down {
-                transform: translateY(200px);
-            }
-        </style>
-    
-        <div class="demo-container">
-            <h3 style="text-align: center; margin-bottom: 20px;">Select a query image:</h3>
-            
-            <div class="query-images">
-                <img src="demo/query1.jpg" class="query-image" onclick="processImage(this, 'query1')" alt="Query 1">
-                <img src="demo/query2.jpg" class="query-image" onclick="processImage(this, 'query2')" alt="Query 2">
-                <img src="demo/query3.jpg" class="query-image" onclick="processImage(this, 'query3')" alt="Query 3">
-                <img src="demo/query4.jpg" class="query-image" onclick="processImage(this, 'query4')" alt="Query 4">
-                <img src="demo/query5.jpg" class="query-image" onclick="processImage(this, 'query5')" alt="Query 5">
-            </div>
-    
-        <div class="models-container" id="models-container">
+        <div class="query-images">
+            <img src="demo/query1.jpg" class="query-image" onclick="processImage(this, 'query1')" alt="Query 1">
+            <img src="demo/query2.jpg" class="query-image" onclick="processImage(this, 'query2')" alt="Query 2">
+            <img src="demo/query3.jpg" class="query-image" onclick="processImage(this, 'query3')" alt="Query 3">
+            <img src="demo/query4.jpg" class="query-image" onclick="processImage(this, 'query4')" alt="Query 4">
+            <img src="demo/query5.jpg" class="query-image" onclick="processImage(this, 'query5')" alt="Query 5">
+            <!-- 더 많은 쿼리 이미지들... -->
+        </div>
+
+        <div class="models-container">
             <div class="model-section">
-                <h3>GOAL</h3>
+                <h3>GOAL Model</h3>
                 <div class="model-encoder-container">
                     <img src="images/goal_icon.PNG" class="model-encoder" alt="GOAL Encoder">
                     <div class="processing-indicator"></div>
@@ -527,7 +400,7 @@
             </div>
 
             <div class="model-section">
-                <h3>CLIP</h3>
+                <h3>CLIP Model</h3>
                 <div class="model-encoder-container">
                     <img src="images/clip_icon.PNG" class="model-encoder" alt="CLIP Encoder">
                     <div class="processing-indicator"></div>
@@ -539,33 +412,32 @@
         </div>
     </div>
 
-    <div class="abstract-section" id="abstract-section">
-        <p>Vision-language models like CLIP have shown impressive capabilities in aligning images and text, but they often struggle with lengthy, detailed text descriptions due to their training focus on concise captions. We present GOAL (Global-local Object Alignment Learning), a novel fine-tuning method that enhances CLIP's ability to handle lengthy text by leveraging both global and local semantic alignments.</p>
-
-        <p>Our approach consists of two key components: Local Image-Sentence Matching (LISM), which identifies corresponding pairs between image segments and descriptive sentences, and Token Similarity-based Learning (TSL), which efficiently propagates local element attention through these matched pairs.</p>
-
-        <p>Evaluating GOAL on three new benchmarks for image-lengthy text retrieval, we demonstrate significant improvements over baseline CLIP fine-tuning, establishing a simple yet effective approach for adapting CLIP to detailed textual descriptions. Through extensive experiments, we show that our method's focus on local semantic alignment alongside global context leads to more nuanced and representative embeddings, particularly beneficial for tasks requiring fine-grained understanding of lengthy text descriptions.</p>
-    </div>
-
     <script>
-        // 페이지 로드 시 초기화
-        document.addEventListener('DOMContentLoaded', () => {
-            const modelsContainer = document.getElementById('models-container');
-            modelsContainer.style.display = 'none';
-        });
+        const results = {
+            'query1': {
+                goal: "images/goal_result1.PNG",
+                clip: "images/clip_result1.PNG"
+            },
+            'query2': {
+                goal: "images/goal_result2.PNG",
+                clip: "images/clip_result2.PNG"
+            },
+            'query3': {
+                goal: "images/goal_result3.PNG",
+                clip: "images/clip_result3.PNG"
+            },
+            'query4': {
+                goal: "images/goal_result4.PNG",
+                clip: "images/clip_result4.PNG"
+            },
+            'query5': {
+                goal: "images/goal_result5.PNG",
+                clip: "images/clip_result5.PNG"
+            }
+            // 더 많은 결과 매핑...
+        };
 
         function processImage(imgElement, queryId) {
-            // 모델 컨테이너와 Abstract 섹션 가져오기
-            const modelsContainer = document.getElementById('models-container');
-            const abstractSection = document.getElementById('abstract-section');
-            
-            // 모델 컨테이너 표시
-            modelsContainer.style.display = 'flex';
-            setTimeout(() => {
-                modelsContainer.classList.add('show');
-                abstractSection.classList.add('shift-down');
-            }, 10);
-
             // 이미지 복제 및 날아가는 효과 생성
             const rect = imgElement.getBoundingClientRect();
             const flyingImg = imgElement.cloneNode(true);
@@ -583,9 +455,11 @@
                 flyingImg.style.left = goalRect.left + 'px';
                 flyingImg.style.opacity = '0';
                 
+                // 모델 처리 효과
                 goalEncoder.classList.add('processing');
                 goalEncoder.parentElement.classList.add('processing');
                 
+                // 결과 표시
                 setTimeout(() => {
                     document.getElementById('goal-result').innerHTML = `
                         <div class="result-label">GOAL Retrieval Result</div>
