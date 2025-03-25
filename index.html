@@ -118,15 +118,22 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        .paper-list strong {
-            color: #3498db;
-        }
-
         .paper-links a {
             display: inline-block;
             margin-right: 10px;
-            color: #7f8c8d;
+            padding: 6px 12px;
+            background-color: #3498db; /* 파란색 배경 */
+            color: white; /* 흰색 텍스트 */
             text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .paper-links a:hover {
+            background-color: #2980b9; /* 마우스 오버시 더 진한 파란색 */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         .paper-links a:hover {
@@ -204,6 +211,24 @@
             font-size: 0.9em;
         }
 
+        /* arXiv 링크 특별 스타일 */
+        .paper-links a:nth-child(1) {
+            background-color: #B31B1B; /* arXiv 빨간색 */
+        }
+
+        .paper-links a:nth-child(1):hover {
+            background-color: #911616;
+        }
+
+        /* GitHub 코드 링크 특별 스타일 */
+        .paper-links a:nth-child(2) {
+            background-color: #333; /* GitHub 검은색 */
+        }
+
+        .paper-links a:nth-child(2):hover {
+            background-color: #24292e;
+        }
+
         /* 반응형 디자인 */
         @media (max-width: 768px) {
             header {
@@ -268,7 +293,7 @@
             <li>
                 <strong>GOAL⚽:</strong> Global-Local Object Alignment Learning, [Hyungyu Choi*, Young Kyun Jang*, Chanho Eom], CVPR2025
                 <div class="paper-links">
-                    <a href="https://arxiv.org/abs/2503.17782" target="_blank"><i class="fas fa-file-pdf"></i> arXiv</a>
+                    <a href="https://arxiv.org/abs/2503.17782" target="_blank"><i class="fas fa-scroll"></i> arXiv</a>
                     <a href="https://github.com/PerceptualAI-Lab/GOAL" target="_blank"><i class="fab fa-github"></i> Code</a>
                 </div>
             </li>
