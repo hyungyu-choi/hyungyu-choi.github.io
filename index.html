@@ -229,6 +229,24 @@
             background-color: #24292e;
         }
 
+        /* 논문 제목(GOAL) 스타일 */
+        .paper-title {
+            color: black;
+            font-weight: bold;
+        }
+
+        /* 첫 번째 저자 스타일 */
+        .first-author {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        /* 컨퍼런스/저널 이름 스타일 */
+        .venue {
+            color: #3498db;
+            font-weight: bold;
+        }
+
         /* 반응형 디자인 */
         @media (max-width: 768px) {
             header {
@@ -291,7 +309,7 @@
         <h2>Publications</h2>
         <ul class="paper-list">
             <li>
-                <strong>GOAL⚽:</strong> Global-Local Object Alignment Learning, [Hyungyu Choi*, Young Kyun Jang*, Chanho Eom], CVPR2025
+                <strong style="color: black;">GOAL⚽:</strong> Global-Local Object Alignment Learning, [<span class="first-author">Hyungyu Choi*</span>, Young Kyun Jang*, Chanho Eom],  <span class="venue">CVPR2025</span>
                 <div class="paper-links">
                     <a href="https://arxiv.org/abs/2503.17782" target="_blank"><i class="fas fa-scroll"></i> arXiv</a>
                     <a href="https://github.com/PerceptualAI-Lab/GOAL" target="_blank"><i class="fab fa-github"></i> Code</a>
