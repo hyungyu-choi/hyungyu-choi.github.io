@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이름 - 연구 프로필</title>
+    <title>Hyungyu Choi - profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* 전체 스타일 */
@@ -52,13 +52,16 @@
         nav ul {
             list-style: none;
             padding: 0;
+            margin: 0;
             display: flex;
+            align-items: center;
             background-color: #2c3e50;
             border-radius: 5px;
         }
 
         nav li {
             padding: 0;
+            margin: 0;
         }
 
         nav a {
@@ -98,6 +101,7 @@
             border-radius: 20px;
             margin-right: 8px;
             font-size: 0.85em;
+            pointer-events: none; /* 태그 클릭 이벤트 차단 */
         }
 
         /* 논문 리스트 */
@@ -185,8 +189,9 @@
             <p>Hi! Thanks to visit my profile page!</p>
             <p>Research Student at <a href="https://pailab.cau.ac.kr/" target="_blank"><strong>[PerceptualAI-Lab in Chung-Ang University]</strong></p>
             <div class="tags">
-                <span class="tag">#computervision</span>
-                <span class="tag">#multimodal</span>
+                <span class="tag">#Multi-modal</span>
+                <span class="tag">#Computer vision</span>
+                <span class="tag">#NLP</span>
             </div>
         </div>
     </header>
@@ -225,9 +230,9 @@
         <div class="skills">
             <div class="skill-badge">Python</div>
             <div class="skill-badge">PyTorch</div>
+            <div class="skill-badge">multi-modal</div>
             <div class="skill-badge">Computer Vision</div>
             <div class="skill-badge">NLP</div>
-            <div class="skill-badge">multi-modal</div>
             <div class="skill-badge">Docker</div>
             <div class="skill-badge">Git</div>
         </div>
