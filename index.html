@@ -162,6 +162,47 @@
         .contact-links a:hover {
             text-decoration: underline;
         }
+        /* Education 섹션 스타일 */
+        .education-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .education-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .edu-icon {
+            font-size: 2rem;
+            margin-right: 20px;
+            color: #3498db;
+        }
+
+        .edu-details h3 {
+            margin: 0 0 5px 0;
+            color: #2c3e50;
+        }
+
+        .edu-details p {
+            margin: 0 0 5px 0;
+        }
+
+        .edu-date {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
 
         /* 반응형 디자인 */
         @media (max-width: 768px) {
@@ -187,7 +228,10 @@
         <div class="profile-info">
             <h1>Hyungyu Choi</h1>
             <p>Hi! Thanks to visit my profile page!</p>
-            <p>Research Student at <a href="https://pailab.cau.ac.kr/" target="_blank"><strong>[PerceptualAI-Lab in Chung-Ang University]</strong></p>
+            <p>
+                Research Student at 
+                <a href="https://pailab.cau.ac.kr/" target="_blank"><strong>PerceptualAI-Lab in Chung-Ang University</strong></a>
+            </p>
             <div class="tags">
                 <span class="tag">#Multi-modal</span>
                 <span class="tag">#Computer vision</span>
@@ -196,20 +240,26 @@
         </div>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="#about" class="active">About</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
     <section id="about">
         <h2>About Me</h2>
         <p>✨ I'm passionate about multi-modal AI research that integrates vision and language understanding.</p>
         <p>Currently exploring how AI can perceive and interpret the world through multiple sensory inputs simultaneously. My research focuses on creating more intuitive connections between computer vision and natural language processing. Always eager to collaborate and exchange ideas with fellow researchers in this exciting field! 🔍📊</p>
-
+    </section>
+    
+    <section id="education">
+        <h2>Education</h2>
+        <ul class="education-list">
+            <li>
+                <div class="education-item">
+                    <div class="edu-icon">🎓</div>
+                    <div class="edu-details">
+                        <h3>B.S. in Mathematics</h3>
+                        <p>Chung-Ang University, Seoul 🇰🇷</p>
+                        <p class="edu-date">2019 - 2023</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </section>
 
     <section id="publications">
