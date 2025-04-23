@@ -397,6 +397,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
+        /* 모든 섹션의 호버 효과를 통일 - 파란색 왼쪽 바 제거 */
         .paper-list li:hover,
         .patent-item:hover,
         #reviewer .paper-list li:hover,
@@ -404,15 +405,20 @@
         .publication-category .paper-list li:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: none !important; /* 파란색 왼쪽 바 강제 제거 */
         }
 
-        /* Publication 카테고리는 왼쪽 파란 바 유지하면서 효과 추가 */
-        .publication-category .paper-list li:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        /* Publication 카테고리 항목에서 기본 border-left 제거 */
+        .publication-category .paper-list li {
+            border-left: none;
+        }
+
+        /* publication-category 자체의 왼쪽 파란색 바는 유지 */
+        .publication-category {
+            margin-bottom: 25px;
             border-left: 3px solid #3498db;
+            padding-left: 15px;
         }
-
         /* Patents와 Reviewer는 왼쪽 바 없이 효과만 적용 */
         #patents .paper-list li:hover,
         #reviewer .paper-list li:hover {
