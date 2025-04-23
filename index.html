@@ -388,6 +388,72 @@
             background-color: #1abc9c;
         }
 
+        /* Patents와 Reviewer Experience 항목을 흰색 배경으로 통일 */
+        #patents .paper-list li,
+        #reviewer .paper-list li {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            padding: 15px;
+            margin-bottom: 15px;
+            /* 왼쪽 보더 제거 */
+            border-left: none;
+        }
+
+        /* 호버 효과도 파란색 왼쪽 바 제거 */
+        #patents .paper-list li:hover,
+        #reviewer .paper-list li:hover {
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            /* 파란색 왼쪽 바 제거하고 그림자만 강화 */
+            border-left: none;
+        }
+
+        /* Reviewer 헤더 스타일 */
+        .reviewer-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        /* Patents 스타일 수정 */
+        .patent-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .patent-id {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .patent-date {
+            color: #3498db;
+        }
+
+        .patent-titles {
+            margin-bottom: 10px;
+        }
+
+        .patent-title-kr, .patent-title-en {
+            margin: 5px 0;
+        }
+
+        .patent-authors {
+            font-style: italic;
+            color: #555;
+        }
+
+        /* 색상 및 스타일 통일 */
+        .year {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .journal {
+            color: #3498db;
+        }
+
         /* 반응형 디자인 */
         @media (max-width: 768px) {
             header {
@@ -453,9 +519,9 @@
             <h3 class="category-title">International Top-tier Conference</h3>
             <ul class="paper-list">
                 <li>
-                    <strong style="color: black;">GOAL⚽:</strong> Global-Local Object Alignment Learning
+                    <strong style="color: black;">GOAL⚽: Global-Local Object Alignment Learning</strong>
                     <div class="authors">[<span class="first-author">Hyungyu Choi*</span>, Young Kyun Jang*, Chanho Eom]</div>
-                    <span class="venue">IEEE/CVF Conference on Computer Vision and Pattern Recognition</span> <span class="conf-short">(CVPR2025)</span>
+                    <span class="venue">IEEE/CVF Conference on Computer Vision and Pattern Recognition(CVPR2025)</span>
                     <div class="paper-links">
                         <a href="https://arxiv.org/abs/2503.17782" target="_blank"><i class="fas fa-scroll"></i> arXiv</a>
                         <a href="https://github.com/PerceptualAI-Lab/GOAL" target="_blank"><i class="fab fa-github"></i> Code</a>
@@ -478,29 +544,33 @@
 
     <section id="patents">
         <h2>🔒 Patents</h2>
-        <div class="patent-item">
-            <div class="patent-header">
-                <span class="patent-id">10-2025-0043675</span>
-                <span class="patent-date">Apr. 03, 2025 (Application)</span>
-            </div>
-            <div class="patent-titles">
-                <p class="patent-title-kr">[KOR] 기계 학습 기반의 이미지와 텍스트의 매칭 방법 및 이를 수행하기 위한 컴퓨팅 장치</p>
-                <p class="patent-title-en">[ENG] Machine Learning-Based Image And Text Matching Method And Computing Device For Performing The Same</p>
-            </div>
-            <div class="patent-authors">
-                <p class="patent-author">엄찬호(80), 최현규(20)</p>
-            </div>
-        </div>
+        <ul class="paper-list">
+            <li>
+                <div class="patent-header">
+                    <span class="patent-id">10-2025-0043675</span>
+                    <span class="patent-date">Apr. 03, 2025 (Application)</span>
+                </div>
+                <div class="patent-titles">
+                    <p class="patent-title-kr">[KOR] 기계 학습 기반의 이미지와 텍스트의 매칭 방법 및 이를 수행하기 위한 컴퓨팅 장치</p>
+                    <p class="patent-title-en">[ENG] Machine Learning-Based Image And Text Matching Method And Computing Device For Performing The Same</p>
+                </div>
+                <div class="patent-authors">
+                    <p>엄찬호 (80), 최현규 20</p>
+                </div>
+            </li>
+        </ul>
     </section>
 
     <section id="reviewer">
         <h2>🔍 Reviewer Experience</h2>
-        <div class="experience">
-            <div class="experience-item">
-                <span class="year">2024</span>
-                <span class="journal">International Journal of Computer Vision (IJCV)</span>
-            </div>
-        </div>
+        <ul class="paper-list">
+            <li>
+                <div class="reviewer-header">
+                    <span class="year">2024</span>
+                    <span class="journal">International Journal of Computer Vision (IJCV)</span>
+                </div>
+            </li>
+        </ul>
     </section>
 
     <section id="skills">
