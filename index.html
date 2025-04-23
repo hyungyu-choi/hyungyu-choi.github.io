@@ -408,11 +408,23 @@
             border-left: none;
         }
 
-        /* Reviewer 헤더 스타일 */
+        /* Reviewer 헤더 스타일 수정 */
         .reviewer-header {
-            display: flex;
-            justify-content: space-between;
             margin-bottom: 10px;
+        }
+
+        .reviewer-info {
+            text-align: right; /* 오른쪽 정렬 */
+        }
+
+        .year {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-right: 10px; /* 년도와 저널명 사이 여백 */
+        }
+
+        .journal {
+            color: #3498db;
         }
 
         /* Patents 스타일 수정 */
@@ -483,8 +495,10 @@
                 <a href="https://pailab.cau.ac.kr/" target="_blank"><strong>PerceptualAI-Lab in Chung-Ang University</strong></a>
             </p>
             <div class="tags">
-                <span class="tag">#Multi-modal</span>
-                <span class="tag">#Computer vision</span>
+                <span class="tag">#Deep Learning</span>
+                <span class="tag">#Machine Learning</span>
+                <span class="tag">#Vision-Language</span>
+                <span class="tag">#Computer Vision</span>
                 <span class="tag">#NLP</span>
             </div>
         </div>
@@ -516,7 +530,7 @@
         <h2>Publications</h2>
         
         <div class="publication-category">
-            <h3 class="category-title">International Top-tier Conference</h3>
+            <h3 class="category-title">International ✨Top-tier Conference</h3>
             <ul class="paper-list">
                 <li>
                     <strong style="color: black;">GOAL⚽: Global-Local Object Alignment Learning</strong>
@@ -566,8 +580,10 @@
         <ul class="paper-list">
             <li>
                 <div class="reviewer-header">
-                    <span class="year">2024</span>
-                    <span class="journal">International Journal of Computer Vision (IJCV)</span>
+                    <div class="reviewer-info">
+                        <span class="year">2024</span>
+                        <span class="journal">International Journal of Computer Vision (IJCV)</span>
+                    </div>
                 </div>
             </li>
         </ul>
