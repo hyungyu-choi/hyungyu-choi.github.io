@@ -352,6 +352,42 @@
             background-color: #1abc9c;
         }
 
+        /* 학회 약어 스타일 */
+        .conf-short {
+            color: #7f8c8d;
+            font-style: italic;
+            font-weight: normal;
+        }
+
+        /* 저자 정보 스타일 추가 (기존 CSS에 추가) */
+        .authors {
+            margin: 5px 0;
+            color: #444;
+        }
+
+        /* 소 섹션 스타일 (기존 CSS에 추가) */
+        .publication-category {
+            margin-bottom: 25px;
+            border-left: 3px solid #3498db;
+            padding-left: 15px;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* 저널 링크 스타일 */
+        .paper-links a.journal-link {
+            background-color: #16a085; /* 저널 링크용 초록색 */
+        }
+
+        .paper-links a.journal-link:hover {
+            background-color: #1abc9c;
+        }
+
         /* 반응형 디자인 */
         @media (max-width: 768px) {
             header {
@@ -377,7 +413,7 @@
             <h1>Hyungyu Choi</h1>
             <p>Hi! Thanks to visit my profile page!</p>
             <p>
-                Research Student at 
+                I'm Research Student at 
                 <a href="https://pailab.cau.ac.kr/" target="_blank"><strong>PerceptualAI-Lab in Chung-Ang University</strong></a>
             </p>
             <div class="tags">
@@ -417,7 +453,9 @@
             <h3 class="category-title">International Top-tier Conference</h3>
             <ul class="paper-list">
                 <li>
-                    <strong style="color: black;">GOAL⚽:</strong> Global-Local Object Alignment Learning, [<span class="first-author">Hyungyu Choi*</span>, Young Kyun Jang*, Chanho Eom],  <span class="venue">CVPR2025</span>
+                    <strong style="color: black;">GOAL⚽:</strong> Global-Local Object Alignment Learning
+                    <div class="authors">[<span class="first-author">Hyungyu Choi*</span>, Young Kyun Jang*, Chanho Eom]</div>
+                    <span class="venue">IEEE/CVF Conference on Computer Vision and Pattern Recognition</span> <span class="conf-short">(CVPR2025)</span>
                     <div class="paper-links">
                         <a href="https://arxiv.org/abs/2503.17782" target="_blank"><i class="fas fa-scroll"></i> arXiv</a>
                         <a href="https://github.com/PerceptualAI-Lab/GOAL" target="_blank"><i class="fab fa-github"></i> Code</a>
@@ -433,9 +471,6 @@
                     <strong style="color: black;">Detailed Caption Processing in Vision-Language</strong>
                     <div class="authors">[<span class="first-author">Hyungyu Choi</span> and <span class="coauthor">Chanho Eom</span>]</div>
                     <span class="venue">Journal of Arts and Imaging Science (TechArt)</span>, <span class="date">Jan. 31, 2025</span>
-                    <div class="paper-links">
-                        <a href="#" target="_blank"><i class="fas fa-book"></i> Journal</a>
-                    </div>
                 </li>
             </ul>
         </div>
@@ -449,8 +484,8 @@
                 <span class="patent-date">Apr. 03, 2025 (Application)</span>
             </div>
             <div class="patent-titles">
-                <p class="patent-title-kr">🇰🇷 기계 학습 기반의 이미지와 텍스트의 매칭 방법 및 이를 수행하기 위한 컴퓨팅 장치</p>
-                <p class="patent-title-en">🇬🇧 Machine Learning-Based Image And Text Matching Method And Computing Device For Performing The Same</p>
+                <p class="patent-title-kr">[KOR] 기계 학습 기반의 이미지와 텍스트의 매칭 방법 및 이를 수행하기 위한 컴퓨팅 장치</p>
+                <p class="patent-title-en">[ENG] Machine Learning-Based Image And Text Matching Method And Computing Device For Performing The Same</p>
             </div>
             <div class="patent-authors">
                 <p class="patent-author">엄찬호(80), 최현규(20)</p>
@@ -466,7 +501,6 @@
                 <span class="journal">International Journal of Computer Vision (IJCV)</span>
             </div>
         </div>
-        <p>✨ Contributing to the advancement of computer vision research through thoughtful and constructive peer reviews. Committed to upholding rigorous academic standards while supporting innovative research in the field. 📝💡</p>
     </section>
 
     <section id="skills">
