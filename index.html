@@ -137,7 +137,7 @@
             display: inline-block;
             margin-right: 10px;
             padding: 4px 8px;
-            background-color: #3498db; /* 파란색 배경 */
+            background-color: #3498db; /* 기본 파란색 배경 */
             color: white; /* 흰색 텍스트 */
             text-decoration: none;
             border-radius: 4px;
@@ -146,13 +146,35 @@
         }
 
         .paper-links a:hover {
-            background-color: #2980b9; /* 마우스 오버시 더 진한 파란색 */
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        .paper-links a:hover {
-            color: #3498db;
+        /* Paper 링크 특별 스타일 */
+        .paper-links a:nth-child(1) {
+            background-color: #489aec; /* Paper 진한 회색 */
+        }
+
+        .paper-links a:nth-child(1):hover {
+            background-color: #34495e;
+        }
+
+        /* GitHub 코드 링크 특별 스타일 */
+        .paper-links a:nth-child(2) {
+            background-color: #333; /* GitHub 검은색 */
+        }
+
+        .paper-links a:nth-child(2):hover {
+            background-color: #24292e;
+        }
+
+        /* Project Page 링크 특별 스타일 */
+        .paper-links a:nth-child(3) {
+            background-color: #d085f0; /* Project Page 보라색 */
+        }
+
+        .paper-links a:nth-child(3):hover {
+            background-color: #9b59b6;
         }
 
         /* 기술 스택 */
@@ -184,6 +206,7 @@
         .contact-links a:hover {
             text-decoration: underline;
         }
+
         /* Education 섹션 스타일 */
         .education-list {
             list-style: none;
@@ -224,24 +247,6 @@
         .edu-date {
             color: #7f8c8d;
             font-size: 0.9em;
-        }
-
-        /* arXiv 링크 특별 스타일 */
-        .paper-links a:nth-child(1) {
-            background-color: #B31B1B; /* arXiv 빨간색 */
-        }
-
-        .paper-links a:nth-child(1):hover {
-            background-color: #c54242;
-        }
-
-        /* GitHub 코드 링크 특별 스타일 */
-        .paper-links a:nth-child(2) {
-            background-color: #333; /* GitHub 검은색 */
-        }
-
-        .paper-links a:nth-child(2):hover {
-            background-color: #24292e;
         }
 
         /* 논문 제목(GOAL) 스타일 */
@@ -370,35 +375,6 @@
             font-weight: normal;
         }
 
-        /* 저자 정보 스타일 추가 (기존 CSS에 추가) */
-        .authors {
-            margin: 5px 0;
-            color: #444;
-        }
-
-        /* 소 섹션 스타일 (기존 CSS에 추가) */
-        .publication-category {
-            margin-bottom: 25px;
-            border-left: 3px solid #3498db;
-            padding-left: 15px;
-        }
-
-        .category-title {
-            font-size: 1.25rem;
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        /* 저널 링크 스타일 */
-        .paper-links a.journal-link {
-            background-color: #16a085; /* 저널 링크용 초록색 */
-        }
-
-        .paper-links a.journal-link:hover {
-            background-color: #1abc9c;
-        }
-
         /* 모든 섹션의 항목에 Education 섹션과 동일한 호버 효과 적용 */
         .paper-list li,
         .patent-item,
@@ -424,12 +400,6 @@
             border-left: none;
         }
 
-        /* publication-category 자체의 왼쪽 파란색 바는 유지 */
-        .publication-category {
-            margin-bottom: 25px;
-            border-left: 3px solid #3498db;
-            padding-left: 15px;
-        }
         /* Patents와 Reviewer는 왼쪽 바 없이 효과만 적용 */
         #patents .paper-list li:hover,
         #reviewer .paper-list li:hover {
@@ -444,7 +414,7 @@
         }
 
         .reviewer-info {
-            text-align: left; /* 오른쪽 정렬 */
+            text-align: left;
         }
 
         .year {
@@ -471,19 +441,6 @@
 
         .patent-date {
             color: #3498db;
-        }
-
-        .patent-titles {
-            margin-bottom: 10px;
-        }
-
-        .patent-title-kr, .patent-title-en {
-            margin: 5px 0;
-        }
-
-        .patent-authors {
-            font-style: italic;
-            color: #555;
         }
 
         /* 색상 및 스타일 통일 */
@@ -547,6 +504,16 @@
                 <div class="education-item">
                     <div class="edu-icon">🎓</div>
                     <div class="edu-details">
+                        <h3>M.S. in Artificial Intelligence</h3>
+                        <p>Chung-Ang University, Seoul, South Korea</p>
+                        <p class="edu-date">2025 - Present</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="education-item">
+                    <div class="edu-icon">🎓</div>
+                    <div class="edu-details">
                         <h3>B.S. in Mathematics</h3>
                         <p>Chung-Ang University, Seoul, South Korea</p>
                         <p class="edu-date">2018 - 2025</p>
@@ -567,8 +534,24 @@
                     <div class="authors">[<span class="first-author">Hyungyu Choi*</span>, Young Kyun Jang*, Chanho Eom]</div>
                     <span class="venue">IEEE/CVF Conference on Computer Vision and Pattern Recognition(CVPR2025)</span>
                     <div class="paper-links">
-                        <a href="https://arxiv.org/abs/2503.17782" target="_blank"><i class="fas fa-scroll"></i> arXiv</a>
+                        <a href="https://arxiv.org/abs/2503.17782" target="_blank"><i class="fas fa-file-alt"></i> Paper</a>
                         <a href="https://github.com/PerceptualAI-Lab/GOAL" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://perceptualai-lab.github.io/GOAL/" target="_blank"><i class="fas fa-globe"></i> Project Page</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="publication-category">
+            <h3 class="category-title">Preprint</h3>
+            <ul class="paper-list">
+                <li>
+                    <strong style="color: black;">Visual Representation Alignment for Multimodal Large Language Models</strong>
+                    <div class="authors">[Heeji Yoon*, Jaewoo Jung*, Junwan Kim*, <span class="first-author">Hyungyu Choi</span>, Heeseong Shin, Sangbeom Lim, Honggyu An, Chaehyun Kim, Jisang Han, Donghyun Kim, Chanho Eom, Sunghwan Hong, Seungryong Kim]</div>
+                    <div class="paper-links">
+                        <a href="https://arxiv.org/abs/2509.07979" target="_blank"><i class="fas fa-file-alt"></i> Paper</a>
+                        <a href="https://github.com/cvlab-kaist/VIRAL" target="_blank"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://cvlab-kaist.github.io/VIRAL/" target="_blank"><i class="fas fa-globe"></i> Project Page</a>
                     </div>
                 </li>
             </ul>
@@ -608,6 +591,14 @@
     <section id="reviewer">
         <h2>🔍 Reviewer Experience</h2>
         <ul class="paper-list">
+            <li>
+                <div class="reviewer-header">
+                    <div class="reviewer-info">
+                        <span class="year">2025</span>
+                        <span class="journal">Advances in Neural Information Processing Systems (NeurIPS) </span>
+                    </div>
+                </div>
+            </li>
             <li>
                 <div class="reviewer-header">
                     <div class="reviewer-info">
