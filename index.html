@@ -453,6 +453,56 @@
             color: #3498db;
         }
 
+        /* Media Coverage 섹션 스타일 */
+        .media-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .media-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .media-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .news-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .news-title:hover {
+            color: #3498db;
+        }
+
+        .news-meta {
+            display: flex;
+            gap: 15px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .news-source {
+            font-weight: 500;
+            color: #3498db;
+        }
+
+        .news-date {
+            color: #95a5a6;
+        }
+
         /* 반응형 디자인 */
         @media (max-width: 768px) {
             header {
@@ -530,7 +580,7 @@
             <h3 class="category-title">International ✨Top-tier Conference</h3>
             <ul class="paper-list">
                 <li>
-                    <strong style="color: black;">GOAL⚽: Global-Local Object Alignment Learning</strong>
+                    <strong style="color: black;">GOAL⚽: Global-local Object Alignment Learning</strong>
                     <div class="authors">[<span class="first-author">Hyungyu Choi*</span>, Young Kyun Jang*, Chanho Eom]</div>
                     <span class="venue">IEEE/CVF Conference on Computer Vision and Pattern Recognition(CVPR2025)</span>
                     <div class="paper-links">
@@ -541,9 +591,29 @@
                 </li>
             </ul>
         </div>
+
+        <div class="publication-category">
+            <h3 class="category-title">Under Review</h3>
+            <ul class="paper-list">
+                <li>
+                    <strong style="color: black;">FAST-GOAL: Fast and Efficient Global-local Object Alignment Learning</strong>
+                    <div class="authors">[<span class="first-author">Hyungyu Choi*</span>, Young Kyun Jang*, Chanho Eom]</div>
+                </li>
+            </ul>
+        </div>
         
         <div class="publication-category">
-            <h3 class="category-title">Preprint</h3>
+            <h3 class="category-title">Under Review</h3>
+            <ul class="paper-list">
+                <li>
+                    <strong style="color: black;">TuFS: Do We Need Training for Surgical Phase Recognition?</strong>
+                    <div class="authors">[<span class="first-author">Hyungyu Choi*</span>, Yejong Joo*, Gyuwon Han, Juhyun Park, Jonghyuk Ahn, and Chanho Eom]</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="publication-category">
+            <h3 class="category-title">Under Review</h3>
             <ul class="paper-list">
                 <li>
                     <strong style="color: black;">Visual Representation Alignment for Multimodal Large Language Models</strong>
@@ -569,8 +639,32 @@
         </div>
     </section>
 
+    <section id="media">
+        <h2>Media Coverage</h2>
+        <ul class="media-list">
+            <li class="media-item">
+                <a href="https://www.edaily.co.kr/News/Read?newsId=01702326642338168&mediaCodeNo=257" class="news-title" target="_blank">
+                    AI가 ‘눈’이 되는 시대…멀티모달 기술로 CCTV가 수사 파트너 된다
+                </a>
+                <div class="news-meta">
+                    <span class="news-source">이데일리, NATE뉴스</span>
+                    <span class="news-date">, Oct. 30,  2025</span>
+                </div>
+            </li>
+            <li class="media-item">
+                <a href="https://digitalchosun.dizzo.com/site/data/html_dir/2025/08/05/2025080580094.html" class="news-title" target="_blank">
+                    [KCCV 2025] 엄찬호 중앙대 교수 “세밀한 이미지 검색·생성, 멀티모달 AI 가능성 확장”
+                </a>
+                <div class="news-meta">
+                    <span class="news-source">디지틀조선일보, THE AI    </span>
+                    <span class="news-date">Aug. 05, 2025</span>
+                </div>
+            </li>
+        </ul>
+    </section>
+
     <section id="patents">
-        <h2>🔒 Patents</h2>
+        <h2>Patents</h2>
         <ul class="paper-list">
             <li>
                 <div class="patent-header">
@@ -589,7 +683,7 @@
     </section>
 
     <section id="reviewer">
-        <h2>🔍 Reviewer Experience</h2>
+        <h2>Reviewer Experience</h2>
         <ul class="paper-list">
             <li>
                 <div class="reviewer-header">
