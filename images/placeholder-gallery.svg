@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Gallery image placeholder">
+  <rect width="400" height="300" fill="#eef1f4"/>
+  <rect x="8" y="8" width="384" height="284" fill="none" stroke="#cfd6dd" stroke-width="2" stroke-dasharray="10 8" rx="6"/>
+  <g fill="#aab4bf">
+    <circle cx="152" cy="118" r="20"/>
+    <path d="M100 200l56-62 40 44 30-31 74 49z"/>
+  </g>
+  <text x="200" y="248" text-anchor="middle" font-family="Segoe UI, Tahoma, sans-serif" font-size="19" fill="#8b97a3">Gallery Image</text>
+</svg>

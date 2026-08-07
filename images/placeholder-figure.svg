@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Figure placeholder">
+  <rect width="400" height="300" fill="#f2f4f6"/>
+  <rect x="8" y="8" width="384" height="284" fill="none" stroke="#cfd6dd" stroke-width="2" stroke-dasharray="10 8" rx="6"/>
+  <g fill="#aab4bf">
+    <circle cx="150" cy="120" r="22"/>
+    <path d="M96 205l58-66 42 47 32-33 76 52z"/>
+  </g>
+  <text x="200" y="252" text-anchor="middle" font-family="Segoe UI, Tahoma, sans-serif" font-size="19" fill="#8b97a3">Paper Figure</text>
+</svg>

@@ -235,6 +235,27 @@
             color: #3498db;
         }
 
+        /* 학교 로고 (Education 왼쪽) */
+        .edu-logo {
+            flex: 0 0 76px;
+            width: 76px;
+            height: 76px;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .edu-logo img {
+            max-width: 88%;
+            max-height: 88%;
+            object-fit: contain;
+        }
+
         .edu-details h3 {
             margin: 0 0 5px 0;
             color: #2c3e50;
@@ -366,6 +387,51 @@
 
         .paper-links a.journal-link:hover {
             background-color: #1abc9c;
+        }
+
+        /* ===== Publication 항목: 왼쪽 figure + 오른쪽 정보 ===== */
+        .paper-entry {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .paper-figure {
+            flex: 0 0 240px;
+            width: 240px;
+            border: 1px solid #eaeaea;
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: #f7f9fa;
+        }
+
+        .paper-figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .paper-content {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        /* 저자 소속 로고 (가로가 긴 로고 2개 정도) */
+        .affiliation-logos {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 20px;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .affil-logo {
+            height: 36px;
+            width: auto;
+            max-width: 220px;
+            object-fit: contain;
         }
 
         /* 학회 약어 스타일 */
@@ -503,6 +569,104 @@
             color: #95a5a6;
         }
 
+        /* ===== Media Coverage: 유튜브(영상) 항목 ===== */
+        .media-video .video-link {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .video-thumb {
+            position: relative;
+            flex: 0 0 220px;
+            width: 220px;
+            aspect-ratio: 16 / 9;
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: #2b3138;
+        }
+
+        .video-thumb img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-badge {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.6rem;
+            color: #ff0000;
+            background-color: rgba(0, 0, 0, 0.18);
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+            transition: background-color 0.3s ease;
+        }
+
+        .media-video:hover .play-badge {
+            background-color: rgba(0, 0, 0, 0.32);
+        }
+
+        .video-info {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        /* ===== Gallery 섹션 ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery-thumb {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background-color: #eef1f4;
+            overflow: hidden;
+        }
+
+        .gallery-thumb img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-caption {
+            padding: 12px 14px;
+            font-size: 0.92em;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .gallery-caption strong {
+            display: block;
+            margin-bottom: 4px;
+            color: #2c3e50;
+        }
+
         /* 반응형 디자인 */
         @media (max-width: 768px) {
             header {
@@ -517,6 +681,37 @@
 
             nav ul {
                 flex-direction: column;
+            }
+
+            /* Publication: figure를 위로 */
+            .paper-entry {
+                flex-direction: column;
+            }
+
+            .paper-figure {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+
+            /* 유튜브 항목: 썸네일을 위로 */
+            .media-video .video-link {
+                flex-direction: column;
+            }
+
+            .video-thumb {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+
+            .edu-logo {
+                flex: 0 0 60px;
+                width: 60px;
+                height: 60px;
+                margin-right: 15px;
             }
         }
     </style>
@@ -549,10 +744,17 @@
     
     <section id="education">
         <h2>Education</h2>
+        <!--
+            학교 로고: images/edu/ 에 파일을 넣으면 자동으로 표시됩니다.
+            (파일이 없으면 images/placeholder-edu.svg 가 대신 보입니다)
+        -->
         <ul class="education-list">
             <li>
                 <div class="education-item">
-                    <div class="edu-icon">🎓</div>
+                    <div class="edu-logo">
+                        <img src="images/edu/cau.svg" alt="Chung-Ang University 로고"
+                             onerror="this.onerror=null; this.src='images/placeholder-edu.svg';">
+                    </div>
                     <div class="edu-details">
                         <h3>M.S. in Artificial Intelligence</h3>
                         <p>Chung-Ang University, Seoul, South Korea</p>
@@ -562,7 +764,10 @@
             </li>
             <li>
                 <div class="education-item">
-                    <div class="edu-icon">🎓</div>
+                    <div class="edu-logo">
+                        <img src="images/edu/cau.svg" alt="Chung-Ang University 로고"
+                             onerror="this.onerror=null; this.src='images/placeholder-edu.svg';">
+                    </div>
                     <div class="edu-details">
                         <h3>B.S. in Mathematics</h3>
                         <p>Chung-Ang University, Seoul, South Korea</p>
@@ -575,18 +780,44 @@
 
     <section id="publications">
         <h2>Publications</h2>
-        
+
+        <!--
+            [Publication 항목 구조]
+            .paper-entry
+              ├─ .paper-figure   : 왼쪽 논문 figure  → images/papers/*.png
+              └─ .paper-content  : 제목 / 저자 / 학회·저널 / 링크
+                   └─ .affiliation-logos : 소속 로고 (가로가 긴 이미지 2개)
+                                           → images/logos/*.png
+
+            이미지 파일이 아직 없으면 placeholder 가 대신 표시됩니다.
+            해당 경로에 파일만 넣으면 HTML 수정 없이 바로 반영됩니다.
+        -->
+
         <div class="publication-category">
             <h3 class="category-title">International ✨Top-tier Conference</h3>
             <ul class="paper-list">
                 <li>
-                    <strong style="color: black;">GOAL⚽: Global-local Object Alignment Learning</strong>
-                    <div class="authors">[<span class="first-author">Hyungyu Choi*</span>, Young Kyun Jang*, Chanho Eom]</div>
-                    <span class="venue">IEEE/CVF Conference on Computer Vision and Pattern Recognition(CVPR2025)</span>
-                    <div class="paper-links">
-                        <a href="https://arxiv.org/abs/2503.17782" target="_blank"><i class="fas fa-file-alt"></i> Paper</a>
-                        <a href="https://github.com/PerceptualAI-Lab/GOAL" target="_blank"><i class="fab fa-github"></i> Code</a>
-                        <a href="https://perceptualai-lab.github.io/GOAL/" target="_blank"><i class="fas fa-globe"></i> Project Page</a>
+                    <div class="paper-entry">
+                        <div class="paper-figure">
+                            <img src="images/papers/goal.png" alt="GOAL 논문 figure"
+                                 onerror="this.onerror=null; this.src='images/placeholder-figure.svg';">
+                        </div>
+                        <div class="paper-content">
+                            <strong style="color: black;">GOAL⚽: Global-local Object Alignment Learning</strong>
+                            <div class="authors">[<span class="first-author">Hyungyu Choi*</span>, Young Kyun Jang*, Chanho Eom]</div>
+                            <span class="venue">IEEE/CVF Conference on Computer Vision and Pattern Recognition(CVPR2025)</span>
+                            <div class="paper-links">
+                                <a href="https://arxiv.org/abs/2503.17782" target="_blank"><i class="fas fa-file-alt"></i> Paper</a>
+                                <a href="https://github.com/PerceptualAI-Lab/GOAL" target="_blank"><i class="fab fa-github"></i> Code</a>
+                                <a href="https://perceptualai-lab.github.io/GOAL/" target="_blank"><i class="fas fa-globe"></i> Project Page</a>
+                            </div>
+                            <div class="affiliation-logos">
+                                <img class="affil-logo" src="images/logos/goal-1.png" alt="소속 기관 로고 1"
+                                     onerror="this.onerror=null; this.src='images/placeholder-logo.svg';">
+                                <img class="affil-logo" src="images/logos/goal-2.png" alt="소속 기관 로고 2"
+                                     onerror="this.onerror=null; this.src='images/placeholder-logo.svg';">
+                            </div>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -596,25 +827,53 @@
             <h3 class="category-title">International ✨Top-tier Journal</h3>
             <ul class="paper-list">
                 <li>
-                    <strong style="color: black;">FAST-GOAL🏃⚽: Fast and Efficient Global-local Object Alignment Learning</strong>
-                    <div class="authors">[<span class="first-author">Hyungyu Choi*</span>, Young Kyun Jang*, Chanho Eom]</div>
-                    <span class="venue">IEEE Transactions on Image Processing (IEEE TIP)</span>
-                    <span class="venue"> (SCI, Top 2%, Impact Factor: 13.7)</span>
+                    <div class="paper-entry">
+                        <div class="paper-figure">
+                            <img src="images/papers/fast-goal.png" alt="FAST-GOAL 논문 figure"
+                                 onerror="this.onerror=null; this.src='images/placeholder-figure.svg';">
+                        </div>
+                        <div class="paper-content">
+                            <strong style="color: black;">FAST-GOAL🏃⚽: Fast and Efficient Global-local Object Alignment Learning</strong>
+                            <div class="authors">[<span class="first-author">Hyungyu Choi*</span>, Young Kyun Jang*, Chanho Eom]</div>
+                            <span class="venue">IEEE Transactions on Image Processing (IEEE TIP)</span>
+                            <span class="venue"> (SCI, Top 2%, Impact Factor: 13.7)</span>
+                            <div class="affiliation-logos">
+                                <img class="affil-logo" src="images/logos/fast-goal-1.png" alt="소속 기관 로고 1"
+                                     onerror="this.onerror=null; this.src='images/placeholder-logo.svg';">
+                                <img class="affil-logo" src="images/logos/fast-goal-2.png" alt="소속 기관 로고 2"
+                                     onerror="this.onerror=null; this.src='images/placeholder-logo.svg';">
+                            </div>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
-      
+
         <div class="publication-category">
             <h3 class="category-title">International ✨Top-tier Conference</h3>
             <ul class="paper-list">
                 <li>
-                    <strong style="color: black;">Visual Representation Alignment for Multimodal Large Language Models</strong>
-                    <div class="authors">[Heeji Yoon*, Jaewoo Jung*, Junwan Kim*, <span class="first-author">Hyungyu Choi</span>, Heeseong Shin, Sangbeom Lim, Honggyu An, Chaehyun Kim, Jisang Han, Donghyun Kim, Chanho Eom, Sunghwan Hong, Seungryong Kim]</div>
-                    <span class="venue">International Conference on Learning Representations (ICLR) Workshop 2026</span>
-                    <div class="paper-links">
-                        <a href="https://arxiv.org/abs/2509.07979" target="_blank"><i class="fas fa-file-alt"></i> Paper</a>
-                        <a href="https://github.com/cvlab-kaist/VIRAL" target="_blank"><i class="fab fa-github"></i> Code</a>
-                        <a href="https://cvlab-kaist.github.io/VIRAL/" target="_blank"><i class="fas fa-globe"></i> Project Page</a>
+                    <div class="paper-entry">
+                        <div class="paper-figure">
+                            <img src="images/papers/viral.png" alt="VIRAL 논문 figure"
+                                 onerror="this.onerror=null; this.src='images/placeholder-figure.svg';">
+                        </div>
+                        <div class="paper-content">
+                            <strong style="color: black;">Visual Representation Alignment for Multimodal Large Language Models</strong>
+                            <div class="authors">[Heeji Yoon*, Jaewoo Jung*, Junwan Kim*, <span class="first-author">Hyungyu Choi</span>, Heeseong Shin, Sangbeom Lim, Honggyu An, Chaehyun Kim, Jisang Han, Donghyun Kim, Chanho Eom, Sunghwan Hong, Seungryong Kim]</div>
+                            <span class="venue">International Conference on Learning Representations (ICLR) Workshop 2026</span>
+                            <div class="paper-links">
+                                <a href="https://arxiv.org/abs/2509.07979" target="_blank"><i class="fas fa-file-alt"></i> Paper</a>
+                                <a href="https://github.com/cvlab-kaist/VIRAL" target="_blank"><i class="fab fa-github"></i> Code</a>
+                                <a href="https://cvlab-kaist.github.io/VIRAL/" target="_blank"><i class="fas fa-globe"></i> Project Page</a>
+                            </div>
+                            <div class="affiliation-logos">
+                                <img class="affil-logo" src="images/logos/viral-1.png" alt="소속 기관 로고 1"
+                                     onerror="this.onerror=null; this.src='images/placeholder-logo.svg';">
+                                <img class="affil-logo" src="images/logos/viral-2.png" alt="소속 기관 로고 2"
+                                     onerror="this.onerror=null; this.src='images/placeholder-logo.svg';">
+                            </div>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -624,19 +883,45 @@
             <h3 class="category-title">Under Review</h3>
             <ul class="paper-list">
                 <li>
-                    <strong style="color: black;">TuFS: Do We Need Training for Surgical Phase Recognition?</strong>
-                    <div class="authors">[<span class="first-author">Hyungyu Choi*</span>, Yejong Joo*, Gyuwon Han, Juhyun Park, Jonghyuk Ahn, and Chanho Eom]</div>
+                    <div class="paper-entry">
+                        <div class="paper-figure">
+                            <img src="images/papers/tufs.png" alt="TuFS 논문 figure"
+                                 onerror="this.onerror=null; this.src='images/placeholder-figure.svg';">
+                        </div>
+                        <div class="paper-content">
+                            <strong style="color: black;">TuFS: Do We Need Training for Surgical Phase Recognition?</strong>
+                            <div class="authors">[<span class="first-author">Hyungyu Choi*</span>, Yejong Joo*, Gyuwon Han, Juhyun Park, Jonghyuk Ahn, and Chanho Eom]</div>
+                            <div class="affiliation-logos">
+                                <img class="affil-logo" src="images/logos/tufs-1.png" alt="소속 기관 로고 1"
+                                     onerror="this.onerror=null; this.src='images/placeholder-logo.svg';">
+                                <img class="affil-logo" src="images/logos/tufs-2.png" alt="소속 기관 로고 2"
+                                     onerror="this.onerror=null; this.src='images/placeholder-logo.svg';">
+                            </div>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
-        
+
         <div class="publication-category">
             <h3 class="category-title">Domestic Journal</h3>
             <ul class="paper-list">
                 <li>
-                    <strong style="color: black;">Detailed Caption Processing in Vision-Language</strong>
-                    <div class="authors">[<span class="first-author">Hyungyu Choi</span> and <span class="coauthor">Chanho Eom</span>]</div>
-                    <span class="venue">Journal of Arts and Imaging Science (TechArt)</span>, <span class="date">Jan. 31, 2025</span>
+                    <div class="paper-entry">
+                        <div class="paper-figure">
+                            <img src="images/papers/techart.png" alt="Detailed Caption Processing 논문 figure"
+                                 onerror="this.onerror=null; this.src='images/placeholder-figure.svg';">
+                        </div>
+                        <div class="paper-content">
+                            <strong style="color: black;">Detailed Caption Processing in Vision-Language</strong>
+                            <div class="authors">[<span class="first-author">Hyungyu Choi</span> and <span class="coauthor">Chanho Eom</span>]</div>
+                            <span class="venue">Journal of Arts and Imaging Science (TechArt)</span>, <span class="date">Jan. 31, 2025</span>
+                            <div class="affiliation-logos">
+                                <img class="affil-logo" src="images/logos/techart-1.png" alt="소속 기관 로고 1"
+                                     onerror="this.onerror=null; this.src='images/placeholder-logo.svg';">
+                            </div>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -663,7 +948,76 @@
                     <span class="news-date">Aug. 05, 2025</span>
                 </div>
             </li>
+
+            <!--
+                [유튜브 항목 템플릿]
+                아래 VIDEO_ID 세 군데(링크 1곳, 썸네일 1곳)를 실제 영상 ID로 바꾸면
+                유튜브 썸네일이 자동으로 표시됩니다.
+                예) https://www.youtube.com/watch?v=dQw4w9WgXcQ  →  VIDEO_ID = dQw4w9WgXcQ
+                항목을 추가하려면 이 <li> 블록을 복사해서 쓰면 됩니다.
+                사용하지 않을 경우 이 <li> 블록을 삭제하세요.
+            -->
+            <li class="media-item media-video">
+                <a href="https://www.youtube.com/watch?v=VIDEO_ID" class="video-link" target="_blank">
+                    <div class="video-thumb">
+                        <img src="https://img.youtube.com/vi/VIDEO_ID/hqdefault.jpg" alt="영상 썸네일"
+                             onerror="this.onerror=null; this.src='images/placeholder-thumb.svg';">
+                        <span class="play-badge"><i class="fab fa-youtube"></i></span>
+                    </div>
+                    <div class="video-info">
+                        <span class="news-title">영상 제목을 여기에 입력하세요</span>
+                        <div class="news-meta">
+                            <span class="news-source">채널명</span>
+                            <span class="news-date">Mon. DD, YYYY</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
         </ul>
+    </section>
+
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <!--
+            [Gallery 항목 템플릿]
+            이미지는 images/gallery/ 폴더에 넣고 src 경로만 바꿔주세요.
+            (파일이 없으면 placeholder 이미지가 대신 표시됩니다)
+            항목을 추가/삭제하려면 <figure class="gallery-item"> 블록을 복사하거나 지우면 됩니다.
+        -->
+        <div class="gallery-grid">
+            <figure class="gallery-item">
+                <div class="gallery-thumb">
+                    <img src="images/gallery/01.jpg" alt="갤러리 이미지 1"
+                         onerror="this.onerror=null; this.src='images/placeholder-gallery.svg';">
+                </div>
+                <figcaption class="gallery-caption">
+                    <strong>제목 (선택)</strong>
+                    짧은 설명을 여기에 입력하세요.
+                </figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <div class="gallery-thumb">
+                    <img src="images/gallery/02.jpg" alt="갤러리 이미지 2"
+                         onerror="this.onerror=null; this.src='images/placeholder-gallery.svg';">
+                </div>
+                <figcaption class="gallery-caption">
+                    <strong>제목 (선택)</strong>
+                    짧은 설명을 여기에 입력하세요.
+                </figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <div class="gallery-thumb">
+                    <img src="images/gallery/03.jpg" alt="갤러리 이미지 3"
+                         onerror="this.onerror=null; this.src='images/placeholder-gallery.svg';">
+                </div>
+                <figcaption class="gallery-caption">
+                    <strong>제목 (선택)</strong>
+                    짧은 설명을 여기에 입력하세요.
+                </figcaption>
+            </figure>
+        </div>
     </section>
 
     <section id="patents">
@@ -686,7 +1040,7 @@
     </section>
 
     <section id="reviewer">
-        <h2>Reviewer Experience</h2>
+        <h2>Professional Services</h2>
         <ul class="paper-list">
             <li>
                 <div class="reviewer-header">
