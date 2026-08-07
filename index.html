@@ -972,6 +972,32 @@
     <section id="media">
         <h2>Media Coverage</h2>
         <ul class="media-list">
+
+            <!--
+                [유튜브 항목 템플릿]
+                아래 VIDEO_ID 두 군데(링크 1곳, 썸네일 1곳)를 실제 영상 ID로 바꾸면
+                유튜브 썸네일이 자동으로 표시됩니다.
+                예) https://www.youtube.com/watch?v=dQw4w9WgXcQ  →  VIDEO_ID = dQw4w9WgXcQ
+                링크 끝의 &amp;t=0s 는 항상 0초부터 재생시키기 위한 것이니 지우지 마세요.
+                항목을 추가하려면 이 <li> 블록을 복사해서 쓰면 됩니다.
+            -->
+            <li class="media-item media-video">
+                <a href="https://www.youtube.com/watch?v=QM54KMVfxio&amp;t=0s" class="video-link" target="_blank">
+                    <div class="video-thumb">
+                        <img src="https://img.youtube.com/vi/QM54KMVfxio/maxresdefault.jpg" alt="영상 썸네일"
+                             onerror="this.onerror=null; this.src='images/placeholder-thumb.svg';">
+                        <span class="play-badge"><i class="fab fa-youtube"></i></span>
+                    </div>
+                    <div class="video-info">
+                        <span class="news-title">중앙대학교 연구 성과 인터뷰-최현규</span>
+                        <div class="news-meta">
+                            <span class="news-source">중앙대학교 첨단영상대학원 공학전공</span>
+                            <span class="news-date">Aug. 03, 2026</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+
             <li class="media-item">
                 <a href="https://www.edaily.co.kr/News/Read?newsId=01702326642338168&mediaCodeNo=257" class="news-title" target="_blank">
                     AI가 ‘눈’이 되는 시대…멀티모달 기술로 CCTV가 수사 파트너 된다
@@ -990,32 +1016,8 @@
                     <span class="news-date">Aug. 05, 2025</span>
                 </div>
             </li>
-
-            <!--
-                [유튜브 항목 템플릿]
-                아래 VIDEO_ID 세 군데(링크 1곳, 썸네일 1곳)를 실제 영상 ID로 바꾸면
-                유튜브 썸네일이 자동으로 표시됩니다.
-                예) https://www.youtube.com/watch?v=dQw4w9WgXcQ  →  VIDEO_ID = dQw4w9WgXcQ
-                항목을 추가하려면 이 <li> 블록을 복사해서 쓰면 됩니다.
-                사용하지 않을 경우 이 <li> 블록을 삭제하세요.
-            -->
-            <li class="media-item media-video">
-                <a href="https://www.youtube.com/watch?v=QM54KMVfxio" class="video-link" target="_blank">
-                    <div class="video-thumb">
-                        <img src="https://img.youtube.com/vi/QM54KMVfxio/maxresdefault.jpg" alt="영상 썸네일"
-                             onerror="this.onerror=null; this.src='images/placeholder-thumb.svg';">
-                        <span class="play-badge"><i class="fab fa-youtube"></i></span>
-                    </div>
-                    <div class="video-info">
-                        <span class="news-title">중앙대학교 연구 성과 인터뷰</span>
-                        <div class="news-meta">
-                            <span class="news-source">중앙대학교 첨단영상대학원 공학전공</span>
-                            <span class="news-date">Aug. 03, 2026</span>
-                        </div>
-                    </div>
-                </a>
-            </li>
         </ul>
+
     </section>
 
     <section id="gallery">
